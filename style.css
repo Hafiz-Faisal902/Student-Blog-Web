@@ -23,6 +23,19 @@
   --shadow: 0 6px 14px rgba(32, 41, 31, 0.10);
 }
 
+/* Dark mode: same names, swapped values. Toggled by adding
+   data-theme="dark" to <html> — see script.js. */
+html[data-theme="dark"]{
+  --paper:      #1b211c;
+  --card:       #242b24;
+  --ink:        #ece7d8;
+  --ink-soft:   #b7bcae;
+  --pine:       #7fc9ae;
+  --highlight:  #f4c94c;
+  --pencil:     #e08a6f;
+  --line:       #333c31;
+}
+
 *{ box-sizing: border-box; }
 
 html{ scroll-behavior: smooth; }
@@ -36,6 +49,11 @@ body{
   /* faint dot-grid, like graph paper on a desk */
   background-image: radial-gradient(var(--line) 1px, transparent 1px);
   background-size: 22px 22px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+@media (prefers-reduced-motion: reduce){
+  body{ transition: none; }
 }
 
 h1, h2, h3{
@@ -107,6 +125,21 @@ nav.site-nav a:hover,
 nav.site-nav a.active{
   border-bottom-color: var(--highlight);
 }
+
+#theme-toggle{
+  background: none;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  width: 36px;
+  height: 36px;
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--ink);
+  margin-left: 8px;
+}
+
+#theme-toggle:hover{ background: var(--highlight); border-color: var(--highlight); }
 
 /* ---------------- hero ---------------- */
 
@@ -328,6 +361,56 @@ article.post h1{ font-size: clamp(2rem, 4.5vw, 2.7rem); max-width: 20ch; }
 }
 
 #mnemonic-answer{ margin-top: 14px; font-family: 'Caveat', cursive; font-size: 1.4rem; display: none; }
+
+/* ---------------- contact form ---------------- */
+
+.contact-form{
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 32px 0 60px;
+}
+
+.contact-form label{
+  font-weight: 600;
+  font-size: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.contact-form input,
+.contact-form textarea{
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  padding: 10px 12px;
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  background: var(--card);
+  color: var(--ink);
+}
+
+.contact-form textarea{ resize: vertical; min-height: 120px; }
+
+.contact-form button{
+  align-self: flex-start;
+  background: var(--pine);
+  color: var(--card);
+  border: none;
+  font-weight: 600;
+  padding: 10px 22px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+}
+
+.contact-form button:hover{ background: var(--ink); }
+
+.form-note{
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
 
 /* ---------------- footer ---------------- */
 
