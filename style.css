@@ -1,0 +1,359 @@
+/* ============================================================
+   Hafiz's Desk — shared styles
+   Design idea: a study desk / corkboard. Posts look like index
+   cards pinned up, headings use a characterful serif (Fraunces),
+   body text is a clean sans (Inter), and small handwritten notes
+   use Caveat for that "scribbled in the margin" feeling.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=Caveat:wght@600;700&display=swap');
+
+:root{
+  /* -- color tokens -- */
+  --paper:      #f3efe4;   /* desk / page background */
+  --card:       #fffdf6;   /* index card background */
+  --ink:        #20291f;   /* near-black, warm dark green-grey for text */
+  --ink-soft:   #4b5347;   /* secondary text */
+  --pine:       #1d4d3f;   /* deep chalkboard green — headings, nav */
+  --highlight:  #f4c94c;   /* highlighter yellow — accents, tags */
+  --pencil:     #b5482f;   /* pencil-red — corrections, small emphasis */
+  --line:       #d8d0bb;   /* hairline / dashed tape color */
+
+  --radius: 3px;
+  --shadow: 0 6px 14px rgba(32, 41, 31, 0.10);
+}
+
+*{ box-sizing: border-box; }
+
+html{ scroll-behavior: smooth; }
+
+body{
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Inter', sans-serif;
+  line-height: 1.55;
+  /* faint dot-grid, like graph paper on a desk */
+  background-image: radial-gradient(var(--line) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+h1, h2, h3{
+  font-family: 'Fraunces', serif;
+  color: var(--pine);
+  margin: 0 0 0.4em 0;
+  line-height: 1.15;
+}
+
+a{ color: var(--pencil); }
+a:focus-visible, button:focus-visible{
+  outline: 3px solid var(--pine);
+  outline-offset: 2px;
+}
+
+.wrap{
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---------------- header / nav ---------------- */
+
+.site-header{
+  border-bottom: 2px solid var(--ink);
+  background: var(--paper);
+}
+
+.site-header .wrap{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 18px;
+  padding-bottom: 18px;
+  gap: 16px;
+}
+
+.brand{
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: var(--ink);
+  text-decoration: none;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.brand .dot{ color: var(--pencil); }
+
+nav.site-nav ul{
+  list-style: none;
+  display: flex;
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+}
+
+nav.site-nav a{
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding-bottom: 3px;
+  border-bottom: 2px solid transparent;
+}
+
+nav.site-nav a:hover,
+nav.site-nav a.active{
+  border-bottom-color: var(--highlight);
+}
+
+/* ---------------- hero ---------------- */
+
+.hero{
+  padding: 56px 0 40px;
+}
+
+.hero .kicker{
+  font-family: 'Caveat', cursive;
+  font-size: 1.3rem;
+  color: var(--pencil);
+  display: block;
+  margin-bottom: 6px;
+}
+
+.hero h1{
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  max-width: 14ch;
+}
+
+.hero p.lede{
+  max-width: 56ch;
+  font-size: 1.1rem;
+  color: var(--ink-soft);
+}
+
+/* ---------------- category filter ---------------- */
+
+.filters{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 28px 0 8px;
+}
+
+.filters button{
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  background: var(--card);
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  padding: 6px 16px;
+  cursor: pointer;
+  color: var(--ink);
+}
+
+.filters button.active{
+  background: var(--pine);
+  border-color: var(--pine);
+  color: var(--card);
+}
+
+/* ---------------- post grid / index cards ---------------- */
+
+.post-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 26px;
+  margin: 24px 0 64px;
+}
+
+.card{
+  position: relative;
+  background: var(--card);
+  border: 1px solid var(--ink);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 22px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+/* little bit of "pinned to the board" tilt on alternating cards */
+.post-grid .card:nth-child(3n+1){ transform: rotate(-0.6deg); }
+.post-grid .card:nth-child(3n+2){ transform: rotate(0.5deg); }
+.post-grid .card:nth-child(3n+3){ transform: rotate(-0.3deg); }
+.card:hover{ transform: rotate(0deg) translateY(-2px); transition: transform 0.15s ease; }
+
+.card .tape{
+  position: absolute;
+  top: -10px;
+  left: 24px;
+  width: 54px;
+  height: 18px;
+  background: rgba(244, 201, 76, 0.75);
+  border: 1px solid rgba(32,41,31,0.25);
+}
+
+.tag{
+  align-self: flex-start;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  background: var(--highlight);
+  color: var(--ink);
+  padding: 2px 9px;
+  border-radius: 999px;
+}
+
+.tag.draft{ background: transparent; border: 1.5px dashed var(--pencil); color: var(--pencil); }
+
+.card h3{ font-size: 1.25rem; }
+
+.card p{ color: var(--ink-soft); font-size: 0.95rem; margin: 0; }
+
+.card .meta{
+  font-family: 'Caveat', cursive;
+  font-size: 1.05rem;
+  color: var(--pine);
+  margin-top: auto;
+}
+
+/* ---------------- sidebar / study-tip widget ---------------- */
+
+.desk-widget{
+  border: 2px dashed var(--pine);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  background: var(--card);
+  max-width: 480px;
+  margin-bottom: 56px;
+}
+
+.desk-widget h3{ font-size: 1.1rem; margin-bottom: 8px; }
+
+.desk-widget button{
+  margin-top: 10px;
+  background: var(--pine);
+  color: var(--card);
+  border: none;
+  font-weight: 600;
+  padding: 9px 18px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+}
+
+.desk-widget button:hover{ background: var(--ink); }
+
+#tip-text{ font-style: italic; }
+
+/* ---------------- article page ---------------- */
+
+.progress-bar{
+  position: fixed;
+  top: 0; left: 0;
+  height: 4px;
+  background: var(--pencil);
+  width: 0%;
+  z-index: 50;
+}
+
+article.post{ padding: 44px 0 70px; }
+
+article.post .eyebrow{
+  font-family: 'Caveat', cursive;
+  color: var(--pencil);
+  font-size: 1.2rem;
+}
+
+article.post h1{ font-size: clamp(2rem, 4.5vw, 2.7rem); max-width: 20ch; }
+
+.layer-list{
+  list-style: none;
+  margin: 36px 0;
+  padding: 0;
+  border-left: 3px solid var(--pine);
+}
+
+.layer-list li{
+  position: relative;
+  padding: 4px 0 30px 30px;
+}
+
+.layer-list li .num{
+  position: absolute;
+  left: -19px;
+  top: 2px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--pine);
+  color: var(--card);
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.layer-list h2{ font-size: 1.3rem; margin-bottom: 6px; }
+
+.example{
+  background: var(--card);
+  border-left: 4px solid var(--highlight);
+  padding: 10px 16px;
+  margin-top: 8px;
+  font-size: 0.95rem;
+}
+
+.mnemonic{
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+  margin: 40px 0;
+}
+
+.mnemonic button{
+  background: var(--highlight);
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  padding: 8px 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+#mnemonic-answer{ margin-top: 14px; font-family: 'Caveat', cursive; font-size: 1.4rem; display: none; }
+
+/* ---------------- footer ---------------- */
+
+footer.site-footer{
+  border-top: 2px solid var(--ink);
+  padding: 28px 0;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+
+footer.site-footer .wrap{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* ---------------- accessibility: respect reduced motion ---------------- */
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior: auto; }
+  .card, .card:hover{ transition: none !important; }
+}
+
+/* ---------------- small screens ---------------- */
+@media (max-width: 640px){
+  .site-header .wrap{ flex-direction: column; align-items: flex-start; gap: 10px; }
+  nav.site-nav ul{ gap: 16px; flex-wrap: wrap; }
+  .post-grid .card{ transform: none !important; }
+}

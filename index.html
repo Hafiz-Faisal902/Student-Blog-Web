@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hafiz's Desk — a student's study & project blog</title>
+  <meta name="description" content="Study notes, project logs, and student life from Hafiz Faisal.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a href="index.html" class="brand">Hafiz's Desk<span class="dot">.</span></a>
+      <nav class="site-nav">
+        <ul>
+          <li><a href="index.html" class="active">Blog</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero wrap">
+      <span class="kicker">notes from a desk that's usually a little messy</span>
+      <h1>Study notes, project logs, and whatever else I'm figuring out.</h1>
+      <p class="lede">
+        This is my student blog — a place to write up the things I'm learning in
+        class, the small projects I build on the side, and honest notes on
+        actually studying instead of just planning to study. New posts go up
+        whenever I finish something worth sharing.
+      </p>
+    </section>
+
+    <section class="wrap">
+      <!-- Category filter: pure JS, no framework. Good first DOM project. -->
+      <div class="filters" id="filters">
+        <button class="active" data-filter="all">All posts</button>
+        <button data-filter="networking">Networking</button>
+        <button data-filter="study-tips">Study tips</button>
+        <button data-filter="projects">Projects</button>
+      </div>
+
+      <div class="post-grid" id="post-grid">
+
+        <a class="card" href="posts/osi-model.html" data-category="networking">
+          <span class="tape"></span>
+          <span class="tag">Networking</span>
+          <h3>The OSI Model, explained with things you already know</h3>
+          <p>Seven layers, seven everyday comparisons — traffic lights, GPS,
+             delivery services and a waiter — so it actually sticks.</p>
+          <span class="meta">first post!</span>
+        </a>
+
+        <a class="card" href="#" data-category="study-tips" aria-disabled="true">
+          <span class="tape"></span>
+          <span class="tag draft">Coming soon</span>
+          <h3>How I'm getting ready for exams this term</h3>
+          <p>My actual revision schedule, what worked last term, and what I'm
+             changing this time round.</p>
+          <span class="meta">draft — check back soon</span>
+        </a>
+
+        <a class="card" href="#" data-category="projects" aria-disabled="true">
+          <span class="tape"></span>
+          <span class="tag draft">Coming soon</span>
+          <h3>Building this website: what I learned</h3>
+          <p>A behind-the-scenes post on how this blog itself was built —
+             HTML, CSS and a bit of JavaScript.</p>
+          <span class="meta">draft — check back soon</span>
+        </a>
+
+      </div>
+
+      <!-- A small interactive widget so the homepage does something,
+           not just lists links. Teaches arrays + Math.random in script.js -->
+      <div class="desk-widget">
+        <h3>Need a nudge to start studying?</h3>
+        <p id="tip-text">Click the button for a random study tip.</p>
+        <button id="tip-btn" type="button">Give me a tip</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>&copy; 2026 Hafiz Faisal.</span>
+      <span><a href="about.html">Why I made this</a></span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
