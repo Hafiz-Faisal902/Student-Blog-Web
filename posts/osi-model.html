@@ -3,22 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The OSI Model, explained with things you already know — Hafiz's Desk</title>
-  <link rel="stylesheet" href="../style.css">
+  <title>About — Hafiz's Desk</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- filled in by script.js as the reader scrolls down the article -->
-  <div class="progress-bar" id="progress-bar"></div>
-
   <header class="site-header">
     <div class="wrap">
-      <a href="../index.html" class="brand">Hafiz's Desk<span class="dot">.</span></a>
+      <a href="index.html" class="brand">Hafiz's Desk<span class="dot">.</span></a>
       <nav class="site-nav">
         <ul>
-          <li><a href="../index.html">Blog</a></li>
-          <li><a href="../about.html">About</a></li>
-          <li><a href="../contact.html">Contact</a></li>
+          <li><a href="index.html">Blog</a></li>
+          <li><a href="about.html" class="active">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
       <button id="theme-toggle" type="button" aria-label="Toggle dark mode">🌙</button>
@@ -27,109 +24,42 @@
 
   <main>
     <article class="post wrap">
-      <span class="eyebrow">networking · first post</span>
-      <h1>The OSI Model, explained with things you already know</h1>
+      <span class="eyebrow">the person behind the desk</span>
+      <h1>Hi, I'm Hafiz.</h1>
 
       <p>
-        The <strong>Open Systems Interconnection (OSI) Model</strong> is a
-        conceptual framework for understanding how networking protocols work
-        together to get data from one device to another. It breaks that whole
-        journey into <strong>7 layers</strong>, each with one specific job.
-        Below is each layer, in order, with an everyday comparison for the
-        ones that don't click right away.
+        I'm a student, and this site is where I write about what I'm learning —
+        starting with networking, since that's what I'm studying right now, but
+        it won't stay just that. Whatever comes up in class or in a side
+        project that I think is worth explaining, I'll write it up here.
       </p>
 
-      <ol class="layer-list">
-        <li>
-          <span class="num">1</span>
-          <h2>Physical Layer</h2>
-          <p>
-            Handles the actual connection between devices — sending raw,
-            unprocessed bits over a physical medium.
-          </p>
-          <div class="example"><strong>Hardware:</strong> network cables, repeaters, hubs, and connectors.</div>
-        </li>
+      <p>
+        The goal isn't to sound like a textbook. It's to explain things the way
+        I'd want them explained to me: plain language, real comparisons, and
+        no pretending something makes sense before it actually does.
+      </p>
 
-        <li>
-          <span class="num">2</span>
-          <h2>Data Link Layer</h2>
-          <p>
-            Handles error detection and correction, plus node-to-node data
-            transport, so the bits from the Physical Layer arrive clean.
-          </p>
-          <div class="example"><strong>Like:</strong> traffic lights at an intersection — managing the flow of cars (data) and preventing collisions.</div>
-        </li>
+      <p>
+        I built this site myself — no page builder, no AI-generated content —
+        just HTML, CSS, and a bit of JavaScript, and I'm learning more of all
+        three with every post I add. If you're a classmate or a teacher
+        checking this out, thanks for stopping by. More posts are on the way.
+      </p>
 
-        <li>
-          <span class="num">3</span>
-          <h2>Network Layer</h2>
-          <p>
-            Handles data transfer between different networks and works out
-            the best path for data to travel from source to destination.
-          </p>
-          <div class="example"><strong>Like:</strong> a GPS finding the best route from home to school.</div>
-        </li>
-
-        <li>
-          <span class="num">4</span>
-          <h2>Transport Layer</h2>
-          <p>
-            Makes sure data gets from the source system to the destination
-            system, managing flow control and error checking along the way.
-          </p>
-          <div class="example"><strong>Like:</strong> a delivery service making sure your package arrives safely and on time.</div>
-        </li>
-
-        <li>
-          <span class="num">5</span>
-          <h2>Session Layer</h2>
-          <p>
-            Manages sessions between applications — establishing, maintaining,
-            and ending the connection between devices.
-          </p>
-          <div class="example"><strong>Like:</strong> a phone call — this layer sets up the call, keeps it connected, and ends it when you hang up.</div>
-        </li>
-
-        <li>
-          <span class="num">6</span>
-          <h2>Presentation Layer</h2>
-          <p>
-            Translates data between the application layer and the network,
-            formatting and encrypting it so the receiving system can read it.
-          </p>
-          <div class="example"><strong>Like:</strong> a translator converting a book into another language so more people can read it.</div>
-        </li>
-
-        <li>
-          <span class="num">7</span>
-          <h2>Application Layer</h2>
-          <p>
-            The layer closest to the end user — it provides network services
-            directly to applications, like email, web browsing, and file
-            transfer.
-          </p>
-          <div class="example"><strong>Like:</strong> a waiter taking your order in a restaurant and bringing you your food.</div>
-        </li>
-      </ol>
-
-      <div class="mnemonic">
-        <p><strong>Stuck remembering the order?</strong> There's a classic sentence
-        that maps to Physical → Application, first letter of each word.</p>
-        <button id="mnemonic-btn" type="button">Reveal the mnemonic</button>
-        <p id="mnemonic-answer">"Please Do Not Throw Sausage Pizza Away"</p>
-      </div>
-
-      <p><a href="../index.html">&larr; Back to all posts</a></p>
+      <p>
+        <a href="index.html">&larr; Back to the blog</a>
+      </p>
     </article>
   </main>
 
   <footer class="site-footer">
     <div class="wrap">
       <span>&copy; 2026 Hafiz Faisal. Built with HTML, CSS &amp; JS — no AI, just me.</span>
-      <span><a href="../about.html">About this blog</a></span>
+      <span><a href="index.html">Read the blog</a></span>
     </div>
   </footer>
 
-  <script src="../script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
