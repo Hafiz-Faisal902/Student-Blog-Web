@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Hafiz's Desk</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a href="index.html" class="brand">Hafiz's Desk<span class="dot">.</span></a>
+      <nav class="site-nav">
+        <ul>
+          <li><a href="index.html">Blog</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
+      </nav>
+      <button id="theme-toggle" type="button" aria-label="Toggle dark mode">🌙</button>
+    </div>
+  </header>
+
+  <main>
+    <article class="post wrap">
+      <span class="eyebrow">say hi</span>
+      <h1>Get in touch</h1>
+
+      <p>
+        Found a mistake in a post, have a topic you want me to cover, or just
+        want to say hi? Fill this in and it'll open in your email app,
+        addressed to me.
+      </p>
+
+      <!-- This form uses a mailto: action, so it needs no backend or
+           account setup — it just opens the visitor's email app with
+           the fields filled in. See the note below for a fancier option. -->
+      <form class="contact-form" action="mailto:youremail@example.com" method="post" enctype="text/plain">
+        <label>
+          Your name
+          <input type="text" name="name" required>
+        </label>
+        <label>
+          Your email
+          <input type="email" name="email" required>
+        </label>
+        <label>
+          Message
+          <textarea name="message" required></textarea>
+        </label>
+        <button type="submit">Send message</button>
+      </form>
+
+      <p class="form-note">
+        Heads up: swap <code>youremail@example.com</code> in this page's
+        HTML for your real email address before you publish. And since
+        this opens the visitor's own email app, it only works if they have
+        one set up — if you want a form that submits without that
+        (and lets people leave public comments), a free service like
+        <a href="https://formspree.io" target="_blank" rel="noopener">Formspree</a>
+        or a comment widget like
+        <a href="https://giscus.app" target="_blank" rel="noopener">giscus</a>
+        (once your site is on GitHub) are good next steps.
+      </p>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>&copy; 2026 Hafiz Faisal. Built with HTML, CSS &amp; JS — no AI, just me.</span>
+      <span><a href="index.html">Read the blog</a></span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
