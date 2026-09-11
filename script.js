@@ -64,7 +64,33 @@ if (progressBar) {
   });
 }
 
-// ---------- 4. Mnemonic reveal (OSI post) ----------
+// ---------- 4. Dark mode toggle (every page) ----------
+// The theme is stored in localStorage so it stays picked
+// across pages and after the reader closes the tab.
+const themeToggle = document.getElementById('theme-toggle');
+const root = document.documentElement; // the <html> element
+
+function applyTheme(theme) {
+  root.setAttribute('data-theme', theme);
+  if (themeToggle) {
+    themeToggle.textContent = theme === 'dark' ? '☀️' : '🌙';
+  }
+}
+
+// On page load, use the saved theme (default: light)
+const savedTheme = localStorage.getItem('theme') || 'light';
+applyTheme(savedTheme);
+
+if (themeToggle) {
+  themeToggle.addEventListener('click', () => {
+    const current = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+    const next = current === 'dark' ? 'light' : 'dark';
+    localStorage.setItem('theme', next);
+    applyTheme(next);
+  });
+}
+
+// ---------- 5. Mnemonic reveal (OSI post) ----------
 const mnemonicBtn = document.getElementById('mnemonic-btn');
 const mnemonicAnswer = document.getElementById('mnemonic-answer');
 
