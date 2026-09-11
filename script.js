@@ -75,7 +75,7 @@ function applyTheme(theme) {
   if (themeToggle) {
     themeToggle.textContent = theme === 'dark' ? '☀️' : '🌙';
   }
-}
+  }
 
 // On page load, use the saved theme (default: light)
 const savedTheme = localStorage.getItem('theme') || 'light';
