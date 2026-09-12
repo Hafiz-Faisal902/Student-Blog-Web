@@ -64,7 +64,92 @@ if (progressBar) {
   });
 }
 
-// ---------- 4. Mnemonic reveal (OSI post) ----------
+// ---------- 4. Dark mode toggle (every page) ----------
+// The theme is stored in localStorage so it stays picked
+// across pages and after the reader closes the tab.
+const themeToggle = document.getElementById('theme-toggle');
+const root = document.documentElement; // the <html> element
+
+function applyTheme(theme) {
+  root.setAttribute('data-theme', theme);
+  if (themeToggle) {
+    themeToggle.textContent = theme === 'dark' ? '☀️' : '🌙';
+  }
+}
+
+// On page load, use the saved theme (default: light)
+const savedTheme = localStorage.getItem('theme') || 'light';
+applyTheme(savedTheme);
+
+if (themeToggle) {
+  themeToggle.addEventListener('click', () => {
+    const current = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+    const next = current === 'dark' ? 'light' : 'dark';
+    localStorage.setItem('theme', next);
+    applyTheme(next);
+  });
+}
+
+// ---------- 6. Decimal-to-binary live converter (binary post) ----------
+const decimalInput = document.getElementById('decimal-input');
+const binaryOutput = document.getElementById('binary-output');
+
+if (decimalInput && binaryOutput) {
+  decimalInput.addEventListener('input', () => {
+    const value = decimalInput.value.trim();
+
+    if (value === '') {
+      binaryOutput.textContent = '—';
+      return;
+    }
+
+    const num = Number(value);
+
+    if (isNaN(num) || num < 0) {
+      binaryOutput.textContent = '—';
+      return;
+    }
+
+    if (!Number.isInteger(num)) {
+      binaryOutput.textContent = 'whole numbers only';
+      return;
+    }
+
+    // toString(2) converts a number to a base-2 (binary) string
+    binaryOutput.textContent = num.toString(2);
+  });
+}
+
+// ---------- 8. Contact form (contact page) ----------
+// EDIT THIS: put your real email address here before publishing.
+const CONTACT_EMAIL = 'youremail@example.com';
+
+const contactForm = document.getElementById('contact-form');
+
+if (contactForm) {
+  contactForm.addEventListener('submit', (event) => {
+    event.preventDefault(); // stop the normal page-reload submit
+
+    const name = document.getElementById('contact-name').value;
+    const email = document.getElementById('contact-email').value;
+    const message = document.getElementById('contact-message').value;
+    const status = document.getElementById('contact-status');
+
+    const subject = encodeURIComponent(`Message from ${name} via Hafiz's Desk`);
+    const body = encodeURIComponent(`${message}\n\n— ${name} (${email})`);
+
+    // Building the mailto link ourselves (rather than a form action)
+    // works consistently across real browsers.
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+
+    if (status) {
+      status.style.display = 'block';
+      status.textContent = 'Opening your email app now — if nothing happens, make sure you\'re viewing this in a real browser, not a code-editor preview.';
+    }
+  });
+}
+
+// ---------- 9. Mnemonic reveal (OSI post) ----------
 const mnemonicBtn = document.getElementById('mnemonic-btn');
 const mnemonicAnswer = document.getElementById('mnemonic-answer');
 
