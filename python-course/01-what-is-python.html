@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 1: What is Python & installing it — Hafiz's Desk</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+  <div class="progress-bar" id="progress-bar"></div>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a href="../index.html" class="brand">Hafiz's Desk<span class="dot">.</span></a>
+      <nav class="site-nav">
+        <ul>
+          <li><a href="../index.html">Blog</a></li>
+          <li><a href="index.html" class="active">Python Course</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <button id="theme-toggle" type="button" aria-label="Toggle dark mode">🌙</button>
+    </div>
+  </header>
+
+  <main>
+    <article class="post wrap">
+      <span class="eyebrow">python from scratch · lesson 1 of 16 · basic</span>
+      <h1>What is Python, and why is everyone learning it?</h1>
+
+      <p>
+        Python is a programming language — a way of giving a computer
+        instructions it can actually follow. What makes Python special is
+        that it reads almost like plain English, which is exactly why it's
+        usually the first language recommended to beginners.
+      </p>
+
+      <p>
+        It also happens to run almost everything: websites (Instagram is
+        built on it), data analysis, AI and machine learning, automation
+        scripts, even games. Learning it isn't just a school exercise —
+        it's a genuinely useful skill.
+      </p>
+
+      <h2>Step 1: Installing Python</h2>
+      <p>
+        Before writing any code, you need Python installed on your
+        computer.
+      </p>
+      <ol class="layer-list">
+        <li>
+          <span class="num">1</span>
+          <h2>Download it</h2>
+          <p>Go to <strong>python.org/downloads</strong> and download the latest version for your operating system (Windows, Mac, or Linux).</p>
+        </li>
+        <li>
+          <span class="num">2</span>
+          <h2>Run the installer</h2>
+          <p>On Windows, there's a checkbox during install that says <strong>"Add Python to PATH"</strong> — tick it. This one checkbox saves you a lot of confusion later, since it lets you run Python from anywhere on your computer.</p>
+        </li>
+        <li>
+          <span class="num">3</span>
+          <h2>Check it worked</h2>
+          <p>Open Command Prompt (Windows) or Terminal (Mac), type the command below, and press Enter. If you see a version number, you're set.</p>
+          <div class="codeblock">
+            <span class="label">terminal</span>python --version
+          </div>
+        </li>
+      </ol>
+
+      <h2>Step 2: Your first line of code</h2>
+      <p>
+        Every programmer's first program does the exact same thing: it
+        prints a message to the screen. Open a new file, save it as
+        <code>hello.py</code>, and type this:
+      </p>
+      <div class="codeblock">
+<span class="label">hello.py</span>print("Hello, world!")
+      </div>
+      <p>
+        Run it from your terminal with <code>python hello.py</code>, and
+        you should see <code>Hello, world!</code> printed out. That's it —
+        you're officially a programmer now.
+      </p>
+
+      <div class="trick-box">
+        <strong>💡 Trick:</strong> you don't need a fancy setup to start. A
+        free tool called <strong>Thonny</strong> (thonny.org) gives you an
+        editor and a "Run" button in one window — no terminal commands
+        needed. Great for your first few lessons if typing terminal
+        commands feels intimidating right now.
+      </div>
+
+      <h2>A quick note on comments</h2>
+      <p>
+        Anything after a <code>#</code> symbol is a <strong>comment</strong>
+        — Python ignores it completely. Comments are just notes for humans
+        reading the code (including future-you).
+      </p>
+      <div class="codeblock">
+<span class="label">python</span># This line does nothing — it's just a note
+print("This line actually runs")
+      </div>
+
+      <p>
+        That's the whole first lesson. In Lesson 2, we'll start actually
+        storing information using <strong>variables</strong>.
+      </p>
+
+      <div class="lesson-nav">
+        <span class="disabled">&larr; Previous lesson</span>
+        <a href="index.html">Course home</a>
+        <span class="disabled">Next lesson &rarr;</span>
+      </div>
+
+      <!-- Comments load in here via script.js -->
+      <div id="giscus-container" style="margin-top: 20px;"></div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>&copy; 2026 Hafiz Faisal. Built with HTML, CSS &amp; JS — no AI, just me.</span>
+      <span><a href="../about.html">About this blog</a></span>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>

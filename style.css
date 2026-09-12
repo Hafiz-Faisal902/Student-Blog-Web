@@ -412,6 +412,121 @@ article.post h1{ font-size: clamp(2rem, 4.5vw, 2.7rem); max-width: 20ch; }
   color: var(--ink-soft);
 }
 
+/* ---------------- code blocks & tricks (Python course) ---------------- */
+
+.codeblock{
+  background: #1e1e2e;
+  color: #e2e2f0;
+  padding: 16px 18px;
+  border-radius: 6px;
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: 0.88rem;
+  line-height: 1.6;
+  overflow-x: auto;
+  margin: 18px 0;
+}
+
+.codeblock .label{
+  font-size: 0.7rem;
+  color: #8b8bae;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.trick-box{
+  background: rgba(244, 201, 76, 0.18);
+  border: 2px dashed var(--highlight);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  margin: 26px 0;
+}
+
+.trick-box strong{ color: var(--pencil); }
+
+.lesson-nav{
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 40px 0;
+  padding-top: 20px;
+  border-top: 2px solid var(--ink);
+}
+
+.lesson-nav a, .lesson-nav span{
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.lesson-nav .disabled{ color: var(--ink-soft); opacity: 0.5; }
+
+/* ---------------- course hub ---------------- */
+
+.course-tier{ margin: 36px 0; }
+
+.course-tier h2{
+  font-size: 1.4rem;
+  border-bottom: 3px solid var(--highlight);
+  display: inline-block;
+  padding-bottom: 4px;
+}
+
+.lesson-list{
+  list-style: none;
+  padding: 0;
+  margin: 18px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.lesson-list li a, .lesson-list li span{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  border: 1px solid var(--ink);
+  border-radius: var(--radius);
+  background: var(--card);
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.lesson-list li span.locked{
+  color: var(--ink-soft);
+  border-style: dashed;
+  font-weight: 500;
+}
+
+.lesson-list .lnum{
+  background: var(--pine);
+  color: var(--card);
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  flex-shrink: 0;
+}
+
+.lesson-list li span.locked .lnum{ background: var(--ink-soft); }
+
+/* featured card on the homepage pointing at the course */
+.featured-card{
+  grid-column: 1 / -1;
+  background: var(--pine);
+  color: var(--card);
+  border: none;
+  transform: none !important;
+}
+
+.featured-card h3, .featured-card p{ color: var(--card); }
+.featured-card .tag{ background: var(--highlight); color: var(--ink); }
+
 /* ---------------- footer ---------------- */
 
 footer.site-footer{

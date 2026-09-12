@@ -130,7 +130,7 @@ if (decimalInput && binaryOutput) {
 
 // ---------- 8. Contact form (contact page) ----------
 // EDIT THIS: put your real email address here before publishing.
-const CONTACT_EMAIL = 'youremail@example.com';
+const CONTACT_EMAIL = 'rootno.17@gmail.com';
 
 const contactForm = document.getElementById('contact-form');
 
