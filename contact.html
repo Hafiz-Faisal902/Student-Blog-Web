@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About — Hafiz's Desk</title>
+  <title>Contact — Hafiz's Desk</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -14,8 +14,8 @@
       <nav class="site-nav">
         <ul>
           <li><a href="index.html">Blog</a></li>
-          <li><a href="about.html" class="active">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html" class="active">Contact</a></li>
         </ul>
       </nav>
       <button id="theme-toggle" type="button" aria-label="Toggle dark mode">🌙</button>
@@ -24,31 +24,49 @@
 
   <main>
     <article class="post wrap">
-      <span class="eyebrow">the person behind the desk</span>
-      <h1>Hi, I'm Hafiz.</h1>
+      <span class="eyebrow">say hi</span>
+      <h1>Get in touch</h1>
 
       <p>
-        I'm a student, and this site is where I write about what I'm learning —
-        starting with networking, since that's what I'm studying right now, but
-        it won't stay just that. Whatever comes up in class or in a side
-        project that I think is worth explaining, I'll write it up here.
+        Found a mistake in a post, have a topic you want me to cover, or just
+        want to say hi? Fill this in and it'll open in your email app,
+        addressed to me.
       </p>
 
-      <p>
-        The goal isn't to sound like a textbook. It's to explain things the way
-        I'd want them explained to me: plain language, real comparisons, and
-        no pretending something makes sense before it actually does.
-      </p>
+      <!-- Submission is handled in script.js — it builds a mailto: link
+           from these fields and opens it. This works more reliably across
+           browsers than a raw form action="mailto:...". -->
+      <form class="contact-form" id="contact-form">
+        <label>
+          Your name
+          <input type="text" name="name" id="contact-name" required>
+        </label>
+        <label>
+          Your email
+          <input type="email" name="email" id="contact-email" required>
+        </label>
+        <label>
+          Message
+          <textarea name="message" id="contact-message" required></textarea>
+        </label>
+        <button type="submit">Send message</button>
+        <p id="contact-status" class="form-note" style="display:none;"></p>
+      </form>
 
-      <p>
-        I built this site myself — no page builder, no AI-generated content —
-        just HTML, CSS, and a bit of JavaScript, and I'm learning more of all
-        three with every post I add. If you're a classmate or a teacher
-        checking this out, thanks for stopping by. More posts are on the way.
-      </p>
-
-      <p>
-        <a href="index.html">&larr; Back to the blog</a>
+      <p class="form-note">
+        Heads up: open <code>script.js</code> and find the line
+        <code>const CONTACT_EMAIL = ...</code> near the top of the contact
+        form section — swap in your real email address there before you
+        publish. Also, this only works in a real browser (Chrome, Edge,
+        Firefox, Safari) — code-editor preview panes like VS Code's don't
+        support opening email links. And since it opens the visitor's own
+        email app, it only works if they have one set up — if you want a
+        form that submits without that (and lets people leave public
+        comments), a free service like
+        <a href="https://formspree.io" target="_blank" rel="noopener">Formspree</a>
+        or a comment widget like
+        <a href="https://giscus.app" target="_blank" rel="noopener">giscus</a>
+        (once your site is on GitHub) are good next steps.
       </p>
     </article>
   </main>

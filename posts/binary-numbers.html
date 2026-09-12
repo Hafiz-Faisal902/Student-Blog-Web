@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Binary: how computers actually count — Hafiz's Desk</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+  <div class="progress-bar" id="progress-bar"></div>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a href="../index.html" class="brand">Hafiz's Desk<span class="dot">.</span></a>
+      <nav class="site-nav">
+        <ul>
+          <li><a href="../index.html">Blog</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <button id="theme-toggle" type="button" aria-label="Toggle dark mode">🌙</button>
+    </div>
+  </header>
+
+  <main>
+    <article class="post wrap">
+      <span class="eyebrow">computer science</span>
+      <h1>Binary: how computers actually count</h1>
+
+      <p>
+        Every number, letter, image, and sound a computer handles eventually
+        comes down to just two symbols: <strong>0</strong> and <strong>1</strong>.
+        Not because computers are simple-minded, but because 0 and 1 map
+        perfectly onto <strong>off and on</strong> — and off/on is the one
+        thing a tiny electronic switch (a transistor) can reliably do,
+        billions of times a second.
+      </p>
+
+      <p>
+        We count in <strong>decimal</strong> (base 10) because we grew up
+        with 10 fingers to count on. Computers count in <strong>binary</strong>
+        (base 2) because they only have two reliable states: off and on.
+      </p>
+
+      <ol class="layer-list">
+        <li>
+          <span class="num">1</span>
+          <h2>Decimal: powers of 10</h2>
+          <p>
+            In a decimal number, each position is worth 10&times; the
+            position to its right — ones, tens, hundreds, thousands.
+          </p>
+          <div class="example">
+            <strong>Example:</strong> the number <strong>247</strong> breaks down as
+            (2&times;100) + (4&times;10) + (7&times;1).
+          </div>
+        </li>
+
+        <li>
+          <span class="num">2</span>
+          <h2>Binary: powers of 2</h2>
+          <p>
+            Binary works the exact same way, just with base 2 instead of
+            base 10. Each position is worth 2&times; the position to its
+            right — ones, twos, fours, eights, sixteens, and so on.
+          </p>
+          <div class="example">
+            <strong>Example:</strong> the binary number <strong>1011</strong>
+            means (1&times;8) + (0&times;4) + (1&times;2) + (1&times;1)
+            = 8 + 0 + 2 + 1 = <strong>11</strong> in decimal.
+          </div>
+        </li>
+
+        <li>
+          <span class="num">3</span>
+          <h2>Counting up in binary</h2>
+          <p>
+            Just like decimal "rolls over" from 9 to 10, binary rolls over
+            from 1 to 10 (which is decimal 2). Here's decimal 0 through 8
+            written in binary:
+          </p>
+          <div class="example">
+            0 = <code>0000</code> &nbsp;·&nbsp;
+            1 = <code>0001</code> &nbsp;·&nbsp;
+            2 = <code>0010</code> &nbsp;·&nbsp;
+            3 = <code>0011</code> &nbsp;·&nbsp;
+            4 = <code>0100</code> &nbsp;·&nbsp;
+            5 = <code>0101</code> &nbsp;·&nbsp;
+            6 = <code>0110</code> &nbsp;·&nbsp;
+            7 = <code>0111</code> &nbsp;·&nbsp;
+            8 = <code>1000</code>
+          </div>
+        </li>
+      </ol>
+
+      <p>
+        Each individual 0 or 1 is called a <strong>bit</strong> (short for
+        "binary digit"). Group 8 of them together and you get a
+        <strong>byte</strong> — the unit almost every file size is measured
+        in, from kilobytes to gigabytes.
+      </p>
+
+      <div class="desk-widget">
+        <h3>Try it yourself</h3>
+        <p>Type a decimal number and watch it convert to binary live.</p>
+        <label style="display:block; margin-top:10px; font-weight:600; font-size:0.9rem;">
+          Decimal
+          <input id="decimal-input" type="number" min="0" max="9007199254740991" step="1" placeholder="e.g. 42"
+                 style="display:block; margin-top:6px; padding:8px 10px; font-size:1rem; width:100%; max-width:200px; border:2px solid var(--ink); border-radius:3px; background:var(--card); color:var(--ink);">
+        </label>
+        <p style="margin-top:14px;">Binary: <strong id="binary-output" style="font-family:monospace; font-size:1.2rem; word-break:break-all; display:inline-block; max-width:100%;">—</strong></p>
+      </div>
+
+      <p><a href="../index.html">&larr; Back to all posts</a></p>
+
+      <!-- Comments load in here via script.js -->
+      <div id="giscus-container" style="margin-top: 48px;"></div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>&copy; 2026 Hafiz Faisal. Built with HTML, CSS &amp; JS — no AI, just me.</span>
+      <span><a href="../about.html">About this blog</a></span>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>

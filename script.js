@@ -87,6 +87,7 @@ if (themeToggle) {
     const next = current === 'dark' ? 'light' : 'dark';
     localStorage.setItem('theme', next);
     applyTheme(next);
+    updateGiscusTheme(next);
   });
 }
 
@@ -112,6 +113,13 @@ if (decimalInput && binaryOutput) {
 
     if (!Number.isInteger(num)) {
       binaryOutput.textContent = 'whole numbers only';
+      return;
+    }
+
+    // Numbers bigger than this lose precision in JavaScript, so the
+    // conversion would be wrong (not just long) past this point.
+    if (num > Number.MAX_SAFE_INTEGER) {
+      binaryOutput.textContent = 'too large — try something under 9 quadrillion';
       return;
     }
 
@@ -149,7 +157,46 @@ if (contactForm) {
   });
 }
 
-// ---------- 9. Mnemonic reveal (OSI post) ----------
+// ---------- 10. Giscus comments (post pages) ----------
+// Built with createElement (instead of a plain <script> tag in the HTML)
+// so we can set its theme to match whatever theme this page already has,
+// instead of giscus's own OS-based guess.
+const giscusContainer = document.getElementById('giscus-container');
+
+if (giscusContainer) {
+  const currentTheme = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+
+  const giscusScript = document.createElement('script');
+  giscusScript.src = 'https://giscus.app/client.js';
+  giscusScript.setAttribute('data-repo', 'RootNo7/Student-Blog-Web');
+  giscusScript.setAttribute('data-repo-id', 'R_kgDOUWSRJw');
+  giscusScript.setAttribute('data-category', 'Announcements');
+  giscusScript.setAttribute('data-category-id', 'DIC_kwDOUWSRJ84DFYQ2');
+  giscusScript.setAttribute('data-mapping', 'title');
+  giscusScript.setAttribute('data-strict', '0');
+  giscusScript.setAttribute('data-reactions-enabled', '1');
+  giscusScript.setAttribute('data-emit-metadata', '0');
+  giscusScript.setAttribute('data-input-position', 'bottom');
+  giscusScript.setAttribute('data-theme', currentTheme);
+  giscusScript.setAttribute('data-lang', 'en');
+  giscusScript.setAttribute('crossorigin', 'anonymous');
+  giscusScript.async = true;
+
+  giscusContainer.appendChild(giscusScript);
+}
+
+// Tells the already-loaded giscus iframe to switch theme live —
+// called whenever the site's own dark mode toggle is clicked.
+function updateGiscusTheme(theme) {
+  const giscusFrame = document.querySelector('iframe.giscus-frame');
+  if (!giscusFrame) return;
+  giscusFrame.contentWindow.postMessage(
+    { giscus: { setConfig: { theme } } },
+    'https://giscus.app'
+  );
+}
+
+// ---------- 11. Mnemonic reveal (OSI post) ----------
 const mnemonicBtn = document.getElementById('mnemonic-btn');
 const mnemonicAnswer = document.getElementById('mnemonic-answer');
 
