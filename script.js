@@ -130,7 +130,7 @@ if (decimalInput && binaryOutput) {
 
 // ---------- 8. Contact form (contact page) ----------
 // EDIT THIS: put your real email address here before publishing.
-const CONTACT_EMAIL = 'rootno.17@gmail.com';
+const CONTACT_EMAIL = 'youremail@example.com';
 
 const contactForm = document.getElementById('contact-form');
 
@@ -196,7 +196,19 @@ function updateGiscusTheme(theme) {
   );
 }
 
-// ---------- 11. Mnemonic reveal (OSI post) ----------
+// ---------- 11. Exercise "Show solution" reveals (any lesson page) ----------
+// Works for any number of exercises on a page — no unique IDs needed.
+// Each button just toggles the .reveal-content element right after it.
+document.querySelectorAll('.reveal-btn').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    const content = btn.nextElementSibling;
+    if (!content) return;
+    const nowVisible = content.classList.toggle('visible');
+    btn.textContent = nowVisible ? 'Hide solution' : 'Show solution';
+  });
+});
+
+// ---------- 12. Mnemonic reveal (OSI post) ----------
 const mnemonicBtn = document.getElementById('mnemonic-btn');
 const mnemonicAnswer = document.getElementById('mnemonic-answer');
 

@@ -31,9 +31,20 @@
       <h1>Variables & data types</h1>
 
       <p>
-        A <strong>variable</strong> is just a labeled box that stores a
-        value so you can use it later. Instead of typing the same value
-        over and over, you give it a name once, and Python remembers it.
+        In Lesson 1, we printed things directly:
+        <code>print("Hello, world!")</code>. That works fine for a message
+        that never changes. But almost every real program needs to
+        <strong>store</strong> information and reuse it — a username, a
+        score, a temperature — often changing it as the program runs.
+        That's what a variable is for.
+      </p>
+
+      <h2>What a variable actually is</h2>
+      <p>
+        Think of a variable as a labeled box. You write a label on it (the
+        variable's name), put something inside (the value), and from then
+        on, you can just refer to the box by its label instead of
+        repeating the value itself.
       </p>
 
       <div class="codeblock">
@@ -45,51 +56,75 @@ print(age)
 
       <p>
         Here, <code>name</code> and <code>age</code> are variables. The
-        <code>=</code> sign doesn't mean "equals" like in math — it means
-        <strong>"store this value in this box."</strong>
+        <code>=</code> sign doesn't mean "equals" like in a math equation —
+        it means <strong>"store this value in this box."</strong> Read
+        <code>name = "Hafiz"</code> in your head as "name gets the value
+        Hafiz," not "name equals Hafiz."
+      </p>
+
+      <h2>Variables can change</h2>
+      <p>
+        The label stays, but what's inside the box can be replaced any
+        time — that's the entire point of calling it a "variable" and not
+        a "constant."
+      </p>
+      <div class="codeblock">
+<span class="label">python</span>score = 0
+print(score)
+
+score = 10
+print(score)
+      </div>
+      <p>
+        This is genuinely one of the most useful ideas in this whole
+        course — a running total, a health bar in a game, a countdown
+        timer — all of that is really just one variable being updated
+        over and over.
       </p>
 
       <div class="trick-box">
         <strong>💡 Trick:</strong> variable names can't start with a number
-        or contain spaces, but you can use underscores instead — write
-        <code>student_name</code>, not <code>student name</code>. Python is
-        also case-sensitive: <code>Age</code> and <code>age</code> are two
-        completely different variables.
+        or contain spaces, but underscores work — write
+        <code>student_name</code>, not <code>student name</code>. Python
+        is also case-sensitive: <code>Age</code> and <code>age</code> are
+        two completely different variables, which is a sneaky source of
+        bugs when you accidentally mix the capitalization.
       </div>
 
       <h2>The core data types</h2>
       <p>
-        Every value in Python has a <strong>type</strong> — it tells Python
-        what kind of thing it's dealing with, so it knows what you're
-        allowed to do with it.
+        Every value in Python has a <strong>type</strong> — it tells
+        Python what category of thing it's dealing with, which affects
+        what you're allowed to do with it. This is exactly why the
+        quotation marks in Lesson 1 mattered.
       </p>
 
       <ol class="layer-list">
         <li>
           <span class="num">1</span>
           <h2>int (integer)</h2>
-          <p>Whole numbers, positive or negative, no decimal point.</p>
+          <p>Whole numbers, positive or negative, no decimal point. Use this for anything you count in whole units — age, number of students, a score.</p>
           <div class="example"><code>age = 16</code></div>
         </li>
 
         <li>
           <span class="num">2</span>
           <h2>float (decimal number)</h2>
-          <p>Numbers with a decimal point — used for anything that isn't a whole number.</p>
+          <p>Numbers with a decimal point — anything that needs more precision than a whole number gives you, like a height or a price.</p>
           <div class="example"><code>height = 5.9</code></div>
         </li>
 
         <li>
           <span class="num">3</span>
           <h2>str (string)</h2>
-          <p>Text, always wrapped in quotes — single or double, Python doesn't mind which, as long as they match.</p>
+          <p>Text, always wrapped in quotes — single or double, Python doesn't mind which, as long as the opening and closing quote match. This is exactly what Lesson 1's Exercise 3 broke on purpose.</p>
           <div class="example"><code>name = "Hafiz"</code></div>
         </li>
 
         <li>
           <span class="num">4</span>
           <h2>bool (boolean)</h2>
-          <p>Only two possible values: <code>True</code> or <code>False</code>. Used constantly for decisions — we'll use these a lot in Lesson 4.</p>
+          <p>Only two possible values: <code>True</code> or <code>False</code> — always capitalized, no quotes. These exist specifically for yes/no, on/off situations, and we'll rely on them heavily starting in Lesson 4.</p>
           <div class="example"><code>is_student = True</code></div>
         </li>
       </ol>
@@ -97,7 +132,8 @@ print(age)
       <h2>Checking a variable's type</h2>
       <p>
         Not sure what type something is? Ask Python directly with the
-        built-in <code>type()</code> function.
+        built-in <code>type()</code> function — handy while you're still
+        building an instinct for which type is which.
       </p>
       <div class="codeblock">
 <span class="label">python</span>age = 16
@@ -105,11 +141,12 @@ print(type(age))
 <span style="color:#7fbf8f;"># Output: &lt;class 'int'&gt;</span>
       </div>
 
-      <h2>Mixing types (and why it can break)</h2>
+      <h2>Mixing types (and why it breaks)</h2>
       <p>
         Python won't let you combine a number and text with
-        <code>+</code> — this is one of the most common beginner errors,
-        so it's worth seeing on purpose now:
+        <code>+</code> — this is one of the most common errors every
+        beginner hits, so it's worth causing on purpose right now so it's
+        familiar later:
       </p>
       <div class="codeblock">
 <span class="label">python</span>age = 16
@@ -117,8 +154,11 @@ print("I am " + age)
 <span style="color:#e07a7a;"># TypeError: can only concatenate str (not "int") to str</span>
       </div>
       <p>
-        The fix is to convert the number to a string first, using
-        <code>str()</code>:
+        Python isn't being difficult here — it genuinely doesn't know what
+        you mean by "text plus a number." Do you want <code>"16"</code>
+        stuck onto the end of the sentence, or something else entirely?
+        The fix is to be explicit and convert the number into a string
+        first, using <code>str()</code>:
       </p>
       <div class="codeblock">
 <span class="label">python</span>age = 16
@@ -129,19 +169,81 @@ print("I am " + str(age))
       <div class="trick-box">
         <strong>💡 Trick:</strong> there's a cleaner way to mix text and
         variables — an <strong>f-string</strong>. Put an <code>f</code>
-        right before the quotes, and drop variables straight in with curly
-        braces. No <code>str()</code> needed. We'll use these constantly
-        from here on:
+        right before the opening quote, and drop variables straight in
+        using curly braces. No <code>str()</code> needed, and it reads
+        much closer to a normal sentence. We'll use these constantly from
+        here on:
         <div class="codeblock" style="margin-top:10px; margin-bottom:0;">
 <span class="label">python</span>age = 16
 print(f"I am {age} years old")
         </div>
       </div>
 
+      <div class="practice-section">
+        <h2>🧩 Practice</h2>
+
+        <div class="exercise-box">
+          <span class="exercise-title">Exercise 1 — Easy</span>
+          <p>Create three variables: your name, your age, and your favorite subject. Print a single sentence using an f-string that uses all three, like: "My name is Hafiz, I'm 16, and I like Computer Science."</p>
+          <button class="reveal-btn" type="button">Show solution</button>
+          <div class="reveal-content">
+            <div class="codeblock">
+<span class="label">python</span>name = "Hafiz"
+age = 16
+favorite_subject = "Computer Science"
+
+print(f"My name is {name}, I'm {age}, and I like {favorite_subject}.")
+            </div>
+          </div>
+        </div>
+
+        <div class="exercise-box">
+          <span class="exercise-title">Exercise 2 — Fix the bug</span>
+          <p>This code crashes. Figure out why, then fix it without changing what it's trying to print:</p>
+          <div class="codeblock">
+<span class="label">python</span>price = 250
+print("The price is $" + price)
+          </div>
+          <button class="reveal-btn" type="button">Show solution</button>
+          <div class="reveal-content">
+            <p>It's the same string-plus-number error from this lesson. Two valid fixes:</p>
+            <div class="codeblock">
+<span class="label">python (fix 1)</span>price = 250
+print("The price is $" + str(price))
+
+<span class="label">python (fix 2 — cleaner)</span>price = 250
+print(f"The price is ${price}")
+            </div>
+          </div>
+        </div>
+
+        <div class="exercise-box">
+          <span class="exercise-title">Exercise 3 — Predict before you run</span>
+          <p>Without running this, write down what <code>type()</code> will print for each line. Then actually run it and check yourself.</p>
+          <div class="codeblock">
+<span class="label">python</span>print(type(5))
+print(type(5.0))
+print(type("5"))
+print(type(True))
+          </div>
+          <button class="reveal-btn" type="button">Show solution</button>
+          <div class="reveal-content">
+            <p>
+              <code>&lt;class 'int'&gt;</code>,
+              <code>&lt;class 'float'&gt;</code>,
+              <code>&lt;class 'str'&gt;</code>,
+              <code>&lt;class 'bool'&gt;</code> — note that
+              <code>"5"</code> in quotes is text, not a number, even
+              though it looks like one to us.
+            </p>
+          </div>
+        </div>
+      </div>
+
       <p>
-        That covers the core building block of every Python program. In
-        Lesson 3, we'll get input directly from the person running the
-        program, and use operators to actually do something with it.
+        In Lesson 3, we'll get input directly from whoever's running the
+        program, and there's a twist waiting there that connects straight
+        back to what you just practiced.
       </p>
 
       <div class="lesson-nav">
