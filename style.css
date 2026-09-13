@@ -46,6 +46,7 @@ body{
   color: var(--ink);
   font-family: 'Inter', sans-serif;
   line-height: 1.55;
+  overflow-x: hidden;
   /* faint dot-grid, like graph paper on a desk */
   background-image: radial-gradient(var(--line) 1px, transparent 1px);
   background-size: 22px 22px;
@@ -197,7 +198,7 @@ nav.site-nav a.active{
 
 .post-grid{
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: 26px;
   margin: 24px 0 64px;
 }
@@ -422,6 +423,8 @@ article.post h1{ font-size: clamp(2rem, 4.5vw, 2.7rem); max-width: 20ch; }
   font-family: 'Consolas', 'Monaco', monospace;
   font-size: 0.88rem;
   line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-word;
   overflow-x: auto;
   margin: 18px 0;
 }
@@ -527,6 +530,49 @@ article.post h1{ font-size: clamp(2rem, 4.5vw, 2.7rem); max-width: 20ch; }
 .featured-card h3, .featured-card p{ color: var(--card); }
 .featured-card .tag{ background: var(--highlight); color: var(--ink); }
 
+/* ---------------- practice exercises ---------------- */
+
+.exercise-box{
+  border: 2px solid var(--pine);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  margin: 20px 0;
+  background: var(--card);
+}
+
+.exercise-box .exercise-title{
+  font-weight: 700;
+  color: var(--pine);
+  display: block;
+  margin-bottom: 6px;
+}
+
+.reveal-btn{
+  margin-top: 12px;
+  background: var(--highlight);
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  padding: 8px 16px;
+  font-weight: 700;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+}
+
+.reveal-content{
+  display: none;
+  margin-top: 14px;
+}
+
+.reveal-content.visible{ display: block; }
+
+.practice-section{
+  margin: 44px 0;
+  padding-top: 28px;
+  border-top: 3px dashed var(--line);
+}
+
+.practice-section > h2{ font-size: 1.5rem; }
+
 /* ---------------- footer ---------------- */
 
 footer.site-footer{
@@ -550,8 +596,108 @@ footer.site-footer .wrap{
 }
 
 /* ---------------- small screens ---------------- */
+
+/* Safety net: nothing on the page should ever cause horizontal
+   scrolling, no matter how narrow the screen is. */
+html, body{
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+img, svg, iframe{ max-width: 100%; }
+
+@media (max-width: 780px){
+  .site-header .wrap{
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .site-header{ position: relative; }
+
+  #theme-toggle{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+
+  nav.site-nav ul{ gap: 14px; flex-wrap: wrap; row-gap: 8px; }
+}
+
 @media (max-width: 640px){
-  .site-header .wrap{ flex-direction: column; align-items: flex-start; gap: 10px; }
-  nav.site-nav ul{ gap: 16px; flex-wrap: wrap; }
+  .wrap{ padding: 0 16px; }
+
+  #theme-toggle{ top: 18px; right: 16px; }
+
+  .hero{ padding: 36px 0 24px; }
+  .hero h1{ max-width: 100%; }
+
+  /* one column of cards is far more readable than a cramped grid */
+  .post-grid{ grid-template-columns: 1fr; }
   .post-grid .card{ transform: none !important; }
+
+  .card{ padding: 20px 16px 18px; }
+
+  .desk-widget{ padding: 16px; }
+
+  article.post{ padding: 30px 0 50px; }
+
+  .layer-list{
+    border-left: none;
+    padding-left: 0;
+  }
+
+  .layer-list li{
+    position: relative;
+    padding: 0 0 26px 0;
+  }
+
+  .layer-list li .num{
+    position: static;
+    float: left;
+    width: 30px;
+    height: 30px;
+    margin-right: 12px;
+    font-size: 0.85rem;
+  }
+
+  .layer-list li h2{
+    overflow: hidden; /* creates a new block context so the heading sits beside the circle, not under it */
+    margin: 0 0 8px 0;
+    font-size: 1.1rem;
+    line-height: 30px; /* vertically lines up with the circle */
+  }
+
+  /* Everything else in a step (paragraphs, code blocks, examples —
+     anything at all) drops below the circle at full width. clear:both
+     is what actually guarantees this, regardless of element type. */
+  .layer-list li > *:not(.num):not(h2){
+    clear: both;
+    display: block;
+    width: 100%;
+  }
+
+  .codeblock{
+    font-size: 0.8rem;
+    padding: 12px 14px;
+  }
+
+  .lesson-list li a, .lesson-list li span{
+    padding: 12px 14px;
+    font-size: 0.92rem;
+  }
+
+  .contact-form{ max-width: 100%; }
+
+  footer.site-footer .wrap{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 400px){
+  .brand{ font-size: 1.2rem; }
+  .hero h1{ font-size: 1.9rem; }
+  nav.site-nav ul{ gap: 10px; }
+  nav.site-nav a{ font-size: 0.88rem; }
 }

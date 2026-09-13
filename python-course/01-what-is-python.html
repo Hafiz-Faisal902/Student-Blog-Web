@@ -31,88 +31,204 @@
       <h1>What is Python, and why is everyone learning it?</h1>
 
       <p>
-        Python is a programming language — a way of giving a computer
-        instructions it can actually follow. What makes Python special is
-        that it reads almost like plain English, which is exactly why it's
-        usually the first language recommended to beginners.
+        Before touching any code, let's actually answer the question: what
+        does it mean to "write a program"? At the most basic level, a
+        computer only ever does what it's told, step by step. A
+        programming language is just a way to write those steps down in a
+        form the computer can follow — and Python is one of those
+        languages.
       </p>
 
       <p>
-        It also happens to run almost everything: websites (Instagram is
-        built on it), data analysis, AI and machine learning, automation
-        scripts, even games. Learning it isn't just a school exercise —
-        it's a genuinely useful skill.
+        What makes Python different from a lot of other languages is that
+        it was deliberately designed to look close to plain English. A
+        line like <code>if age &gt; 18:</code> reads almost like a
+        sentence, which is exactly why it's usually the first language
+        recommended to complete beginners — you spend your energy learning
+        to think like a programmer, not decoding confusing symbols.
+      </p>
+
+      <p>
+        It's also not just a "beginner" language you'll outgrow. Instagram,
+        Spotify's backend, and huge parts of AI and machine learning
+        research are all built on it. Learning it isn't just a class
+        requirement — it's the same language powering things you probably
+        already use every day.
       </p>
 
       <h2>Step 1: Installing Python</h2>
       <p>
         Before writing any code, you need Python installed on your
-        computer.
+        computer. This only takes a few minutes.
       </p>
       <ol class="layer-list">
         <li>
           <span class="num">1</span>
           <h2>Download it</h2>
-          <p>Go to <strong>python.org/downloads</strong> and download the latest version for your operating system (Windows, Mac, or Linux).</p>
+          <p>Go to <strong>python.org/downloads</strong> and download the latest version for your operating system (Windows, Mac, or Linux). The website automatically detects your system and shows the right download button.</p>
         </li>
         <li>
           <span class="num">2</span>
           <h2>Run the installer</h2>
-          <p>On Windows, there's a checkbox during install that says <strong>"Add Python to PATH"</strong> — tick it. This one checkbox saves you a lot of confusion later, since it lets you run Python from anywhere on your computer.</p>
+          <p>On Windows, there's a checkbox during install that says <strong>"Add Python to PATH"</strong> — tick it before clicking Install. This one checkbox is what lets you type <code>python</code> from any folder on your computer later. If you miss it, you can usually reinstall and just tick it the second time — nothing is broken permanently.</p>
         </li>
         <li>
           <span class="num">3</span>
           <h2>Check it worked</h2>
-          <p>Open Command Prompt (Windows) or Terminal (Mac), type the command below, and press Enter. If you see a version number, you're set.</p>
+          <p>Open Command Prompt (Windows) or Terminal (Mac), type the command below, and press Enter. If you see a version number like <code>Python 3.12.1</code>, you're set.</p>
           <div class="codeblock">
             <span class="label">terminal</span>python --version
           </div>
         </li>
       </ol>
 
+      <div class="trick-box">
+        <strong>💡 Trick:</strong> if <code>python --version</code> says
+        "command not found" even after installing, the PATH checkbox from
+        Step 2 is almost always the reason. On Windows, try
+        <code>py --version</code> instead — Windows sometimes installs
+        Python under the shorter <code>py</code> command. It's not a sign
+        you did anything wrong; this trips up almost everyone the first
+        time.
+      </div>
+
+      <p>
+        Don't want to deal with the terminal at all right now? A free tool
+        called <strong>Thonny</strong> (thonny.org) gives you a simple
+        window with a "Run" button — no terminal commands needed. Totally
+        fine to start here and move to the terminal later once it feels
+        less unfamiliar.
+      </p>
+
       <h2>Step 2: Your first line of code</h2>
       <p>
         Every programmer's first program does the exact same thing: it
-        prints a message to the screen. Open a new file, save it as
+        displays a message on the screen. Open a new file, save it as
         <code>hello.py</code>, and type this:
       </p>
       <div class="codeblock">
 <span class="label">hello.py</span>print("Hello, world!")
       </div>
       <p>
-        Run it from your terminal with <code>python hello.py</code>, and
-        you should see <code>Hello, world!</code> printed out. That's it —
-        you're officially a programmer now.
+        Let's actually break down what's happening in that single line,
+        piece by piece, because every part of it matters:
+      </p>
+      <ul style="padding-left: 20px; color: var(--ink-soft);">
+        <li style="margin-bottom:10px;"><code>print</code> is a
+        <strong>function</strong> — think of it as a tool that Python
+        already comes with built in. You're not building the ability to
+        show text on screen from scratch; you're just using a tool that's
+        already there.</li>
+        <li style="margin-bottom:10px;">The <code>( )</code> parentheses
+        are how you hand something <em>to</em> that tool. Whatever goes
+        inside them is what <code>print</code> will actually display.</li>
+        <li>The <code>" "</code> quotation marks tell Python "this is
+        text, not code" — we'll cover exactly why that matters in the next
+        lesson.</li>
+      </ul>
+      <p>
+        Run it from your terminal with <code>python hello.py</code> (or
+        press Run in Thonny), and you should see
+        <code>Hello, world!</code> appear. That's it — you're officially a
+        programmer now.
       </p>
 
-      <div class="trick-box">
-        <strong>💡 Trick:</strong> you don't need a fancy setup to start. A
-        free tool called <strong>Thonny</strong> (thonny.org) gives you an
-        editor and a "Run" button in one window — no terminal commands
-        needed. Great for your first few lessons if typing terminal
-        commands feels intimidating right now.
+      <h2>print() isn't just for text</h2>
+      <p>
+        You can print numbers too, without quotes around them:
+      </p>
+      <div class="codeblock">
+<span class="label">python</span>print("My favorite number is:")
+print(7)
       </div>
+      <p>
+        Notice <code>7</code> has no quotes — that's because it's being
+        treated as an actual number, not text. This distinction — text vs.
+        number — is exactly what Lesson 2 is about.
+      </p>
 
       <h2>A quick note on comments</h2>
       <p>
         Anything after a <code>#</code> symbol is a <strong>comment</strong>
-        — Python ignores it completely. Comments are just notes for humans
-        reading the code (including future-you).
+        — Python completely ignores it. Comments are notes written for
+        humans reading the code later, including future-you re-reading
+        your own program in three months and wondering what you were
+        thinking.
       </p>
       <div class="codeblock">
 <span class="label">python</span># This line does nothing — it's just a note
 print("This line actually runs")
       </div>
 
+      <div class="practice-section">
+        <h2>🧩 Practice</h2>
+        <p>Reading is not the same as knowing — actually type these out and run them before moving to Lesson 2.</p>
+
+        <div class="exercise-box">
+          <span class="exercise-title">Exercise 1 — Easy</span>
+          <p>Write a program using two separate <code>print()</code> lines: one that prints your name, and one that prints your favorite subject.</p>
+          <button class="reveal-btn" type="button">Show solution</button>
+          <div class="reveal-content">
+            <div class="codeblock">
+<span class="label">python</span>print("Hafiz")
+print("Computer Science")
+            </div>
+          </div>
+        </div>
+
+        <div class="exercise-box">
+          <span class="exercise-title">Exercise 2 — Easy</span>
+          <p>Print a small 3-line "box" using just <code>print()</code> and text, like this:</p>
+          <div class="example">
+            *****<br>
+            *&nbsp;&nbsp;&nbsp;*<br>
+            *****
+          </div>
+          <button class="reveal-btn" type="button">Show solution</button>
+          <div class="reveal-content">
+            <div class="codeblock">
+<span class="label">python</span>print("*****")
+print("*   *")
+print("*****")
+            </div>
+          </div>
+        </div>
+
+        <div class="exercise-box">
+          <span class="exercise-title">Exercise 3 — Break it on purpose</span>
+          <p>
+            Take your <code>hello.py</code> file and delete just the
+            closing quotation mark, so it reads
+            <code>print("Hello, world!)</code>. Run it. Read the error
+            message Python gives you, word for word — don't just skim past
+            it.
+          </p>
+          <button class="reveal-btn" type="button">Show solution</button>
+          <div class="reveal-content">
+            <p>
+              You should see something like
+              <code>SyntaxError: unterminated string literal</code>. Don't
+              panic at error messages — Python is actually telling you
+              exactly what's wrong and often the line number too. Learning
+              to read errors calmly, instead of assuming everything's
+              broken, is one of the most useful skills in this entire
+              course.
+            </p>
+          </div>
+        </div>
+      </div>
+
       <p>
-        That's the whole first lesson. In Lesson 2, we'll start actually
-        storing information using <strong>variables</strong>.
+        In Lesson 2, we'll start actually storing information using
+        <strong>variables</strong> — and see why that number-vs-text
+        distinction from earlier matters more than it looks like it
+        should.
       </p>
 
       <div class="lesson-nav">
         <span class="disabled">&larr; Previous lesson</span>
         <a href="index.html">Course home</a>
-        <span class="disabled">Next lesson &rarr;</span>
+        <a href="02-variables-data-types.html">Next lesson &rarr;</a>
       </div>
 
       <!-- Comments load in here via script.js -->
