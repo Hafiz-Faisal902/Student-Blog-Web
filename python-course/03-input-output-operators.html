@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 3: Input, Output & Operators — Hafiz's Desk</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+  <div class="progress-bar" id="progress-bar"></div>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a href="../index.html" class="brand">Hafiz's Desk<span class="dot">.</span></a>
+      <nav class="site-nav">
+        <ul>
+          <li><a href="../index.html">Blog</a></li>
+          <li><a href="index.html" class="active">Python Course</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <button id="theme-toggle" type="button" aria-label="Toggle dark mode">🌙</button>
+    </div>
+  </header>
+
+  <main>
+    <article class="post wrap">
+      <span class="eyebrow">python from scratch · lesson 3 of 16 · basic</span>
+      <h1>Input, output & operators</h1>
+
+      <p>
+        So far, every value in our programs has been typed directly into
+        the code. Real programs need to react to whatever the person
+        running them types in — that's what this lesson is about.
+      </p>
+
+      <h2>Getting input from the user</h2>
+      <p>
+        The <code>input()</code> function pauses the program, waits for
+        the person to type something and press Enter, then hands you back
+        whatever they typed.
+      </p>
+      <div class="codeblock">
+<span class="label">python</span>name = input("What's your name? ")
+print(f"Hello, {name}!")
+      </div>
+
+      <div class="trick-box">
+        <strong>💡 Trick that trips up almost every beginner:</strong>
+        <code>input()</code> <strong>always</strong> gives you back a
+        string — even if the person types a number. Try this and see what
+        happens:
+        <div class="codeblock" style="margin-top:10px; margin-bottom:0;">
+<span class="label">python</span>age = input("How old are you? ")
+print(age + 5)
+<span style="color:#e07a7a;"># TypeError: can only concatenate str (not "int") to str</span>
+        </div>
+        Fix it by wrapping the input in <code>int()</code> (or
+        <code>float()</code> for decimals):
+        <div class="codeblock" style="margin-top:10px; margin-bottom:0;">
+<span class="label">python</span>age = int(input("How old are you? "))
+print(age + 5)
+        </div>
+      </div>
+
+      <h2>Operators</h2>
+      <p>
+        Operators are the symbols that actually do things to your values.
+        Most of these you already know from math class — a couple are new.
+      </p>
+
+      <ol class="layer-list">
+        <li>
+          <span class="num">1</span>
+          <h2>The basics: + − * /</h2>
+          <p>Addition, subtraction, multiplication, and regular division. Nothing surprising here.</p>
+          <div class="example"><code>7 + 3</code> &rarr; <code>10</code> &nbsp;·&nbsp; <code>7 / 2</code> &rarr; <code>3.5</code></div>
+        </li>
+
+        <li>
+          <span class="num">2</span>
+          <h2>// — floor division</h2>
+          <p>Divides, then drops everything after the decimal point. Useful whenever you want a whole-number result and don't care about the remainder.</p>
+          <div class="example"><code>7 // 2</code> &rarr; <code>3</code></div>
+        </li>
+
+        <li>
+          <span class="num">3</span>
+          <h2>% — modulus (the remainder)</h2>
+          <p>Gives you what's <em>left over</em> after dividing. This one shows up constantly — it's the standard way to check if a number is even or odd.</p>
+          <div class="example"><code>7 % 2</code> &rarr; <code>1</code> &nbsp;·&nbsp; <code>8 % 2</code> &rarr; <code>0</code></div>
+        </li>
+
+        <li>
+          <span class="num">4</span>
+          <h2>** — exponent (power)</h2>
+          <p>Raises a number to a power. Not the same as <code>^</code>, which does something different in Python.</p>
+          <div class="example"><code>2 ** 5</code> &rarr; <code>32</code></div>
+        </li>
+
+        <li>
+          <span class="num">5</span>
+          <h2>Comparison operators</h2>
+          <p>These compare two values and give back <code>True</code> or <code>False</code> — we'll lean on these heavily starting next lesson.</p>
+          <div class="example"><code>5 == 5</code> &rarr; <code>True</code> &nbsp;·&nbsp; <code>5 != 3</code> &rarr; <code>True</code> &nbsp;·&nbsp; <code>5 &gt; 10</code> &rarr; <code>False</code></div>
+        </li>
+      </ol>
+
+      <div class="trick-box">
+        <strong>💡 Trick:</strong> a single <code>=</code> assigns a value
+        ("store this"). A double <code>==</code> checks equality ("are
+        these the same?"). Mixing them up is one of the most common bugs
+        in every beginner's first week — including mine.
+      </div>
+
+      <h2>Putting it together: a tiny calculator</h2>
+      <p>
+        Here's everything from this lesson combined into a program that
+        actually does something:
+      </p>
+      <div class="codeblock">
+<span class="label">python</span>num1 = float(input("Enter first number: "))
+num2 = float(input("Enter second number: "))
+
+print(f"Sum: {num1 + num2}")
+print(f"Difference: {num1 - num2}")
+print(f"Product: {num1 * num2}")
+print(f"Quotient: {num1 / num2}")
+      </div>
+
+      <p>
+        That's genuinely a working calculator in eight lines. In Lesson 4,
+        we'll use those comparison operators to make programs that
+        actually make decisions instead of just running top to bottom.
+      </p>
+
+      <div class="lesson-nav">
+        <a href="02-variables-data-types.html">&larr; Previous lesson</a>
+        <a href="index.html">Course home</a>
+        <a href="04-conditionals.html">Next lesson &rarr;</a>
+      </div>
+
+      <!-- Comments load in here via script.js -->
+      <div id="giscus-container" style="margin-top: 20px;"></div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>&copy; 2026 Hafiz Faisal. Built with HTML, CSS &amp; JS — no AI, just me.</span>
+      <span><a href="../about.html">About this blog</a></span>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>
