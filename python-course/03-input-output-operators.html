@@ -31,34 +31,44 @@
       <h1>Input, output & operators</h1>
 
       <p>
-        So far, every value in our programs has been typed directly into
-        the code. Real programs need to react to whatever the person
-        running them types in — that's what this lesson is about.
+        Every program you've written so far has the exact same values
+        typed directly into the code. Run it a hundred times, get the
+        exact same result every time. Real programs need to react to
+        whatever the person actually typed in on that specific run —
+        that's what this lesson unlocks.
       </p>
 
       <h2>Getting input from the user</h2>
       <p>
-        The <code>input()</code> function pauses the program, waits for
-        the person to type something and press Enter, then hands you back
-        whatever they typed.
+        The <code>input()</code> function pauses your program completely,
+        waits for someone to type something and press Enter, and then
+        hands that text back to you as a value you can store.
       </p>
       <div class="codeblock">
 <span class="label">python</span>name = input("What's your name? ")
 print(f"Hello, {name}!")
       </div>
+      <p>
+        Whatever's inside the parentheses — <code>"What's your name? "</code>
+        here — is just a message shown to the person before they type,
+        called a <strong>prompt</strong>. It's optional, but leaving it
+        out means they'll just see a blinking cursor with no idea what
+        you're asking for.
+      </p>
 
       <div class="trick-box">
-        <strong>💡 Trick that trips up almost every beginner:</strong>
-        <code>input()</code> <strong>always</strong> gives you back a
-        string — even if the person types a number. Try this and see what
-        happens:
+        <strong>💡 The trap almost everyone falls into:</strong>
+        remember Lesson 2's Exercise 3, where you predicted
+        <code>type("5")</code>? <code>input()</code> works the exact same
+        way — it <strong>always</strong> gives you back a string, even if
+        the person types numbers. Try this and see what happens:
         <div class="codeblock" style="margin-top:10px; margin-bottom:0;">
 <span class="label">python</span>age = input("How old are you? ")
 print(age + 5)
 <span style="color:#e07a7a;"># TypeError: can only concatenate str (not "int") to str</span>
         </div>
-        Fix it by wrapping the input in <code>int()</code> (or
-        <code>float()</code> for decimals):
+        Same fix as before — wrap it in <code>int()</code> (or
+        <code>float()</code> for decimals) to convert it:
         <div class="codeblock" style="margin-top:10px; margin-bottom:0;">
 <span class="label">python</span>age = int(input("How old are you? "))
 print(age + 5)
@@ -67,58 +77,61 @@ print(age + 5)
 
       <h2>Operators</h2>
       <p>
-        Operators are the symbols that actually do things to your values.
-        Most of these you already know from math class — a couple are new.
+        Operators are the symbols that actually do things with your
+        values. Most of these are already familiar from math class — a
+        couple are genuinely new, and they're the ones worth slowing down
+        for.
       </p>
 
       <ol class="layer-list">
         <li>
           <span class="num">1</span>
           <h2>The basics: + − * /</h2>
-          <p>Addition, subtraction, multiplication, and regular division. Nothing surprising here.</p>
+          <p>Addition, subtraction, multiplication, and regular division — behaves exactly like a calculator.</p>
           <div class="example"><code>7 + 3</code> &rarr; <code>10</code> &nbsp;·&nbsp; <code>7 / 2</code> &rarr; <code>3.5</code></div>
         </li>
 
         <li>
           <span class="num">2</span>
           <h2>// — floor division</h2>
-          <p>Divides, then drops everything after the decimal point. Useful whenever you want a whole-number result and don't care about the remainder.</p>
-          <div class="example"><code>7 // 2</code> &rarr; <code>3</code></div>
+          <p>Divides, then throws away everything after the decimal point — it doesn't round, it just cuts it off. Useful any time you want a whole-number answer, like figuring out how many full teams of 4 you can make from 22 people.</p>
+          <div class="example"><code>22 // 4</code> &rarr; <code>5</code> (5 full teams, 2 people left over)</div>
         </li>
 
         <li>
           <span class="num">3</span>
           <h2>% — modulus (the remainder)</h2>
-          <p>Gives you what's <em>left over</em> after dividing. This one shows up constantly — it's the standard way to check if a number is even or odd.</p>
-          <div class="example"><code>7 % 2</code> &rarr; <code>1</code> &nbsp;·&nbsp; <code>8 % 2</code> &rarr; <code>0</code></div>
+          <p>Gives you what's <em>left over</em> after dividing — in the teams example above, that's the 2 leftover people. This one shows up constantly in real code: it's the standard way to check whether a number is even or odd, since any number divided by 2 either leaves 0 or 1 remaining.</p>
+          <div class="example"><code>22 % 4</code> &rarr; <code>2</code> &nbsp;·&nbsp; <code>8 % 2</code> &rarr; <code>0</code> (even) &nbsp;·&nbsp; <code>7 % 2</code> &rarr; <code>1</code> (odd)</div>
         </li>
 
         <li>
           <span class="num">4</span>
           <h2>** — exponent (power)</h2>
-          <p>Raises a number to a power. Not the same as <code>^</code>, which does something different in Python.</p>
+          <p>Raises a number to a power. Not the same as <code>^</code>, which does something completely different in Python (it's a rarely-used bitwise operator — safe to ignore for now).</p>
           <div class="example"><code>2 ** 5</code> &rarr; <code>32</code></div>
         </li>
 
         <li>
           <span class="num">5</span>
           <h2>Comparison operators</h2>
-          <p>These compare two values and give back <code>True</code> or <code>False</code> — we'll lean on these heavily starting next lesson.</p>
+          <p>These compare two values and give back <code>True</code> or <code>False</code> instead of a number — a boolean, from Lesson 2. We'll build heavily on this starting next lesson.</p>
           <div class="example"><code>5 == 5</code> &rarr; <code>True</code> &nbsp;·&nbsp; <code>5 != 3</code> &rarr; <code>True</code> &nbsp;·&nbsp; <code>5 &gt; 10</code> &rarr; <code>False</code></div>
         </li>
       </ol>
 
       <div class="trick-box">
         <strong>💡 Trick:</strong> a single <code>=</code> assigns a value
-        ("store this"). A double <code>==</code> checks equality ("are
-        these the same?"). Mixing them up is one of the most common bugs
-        in every beginner's first week — including mine.
+        ("store this," from Lesson 2). A double <code>==</code> checks
+        equality ("are these the same?"). They look almost identical and
+        do completely different things — mixing them up is one of the
+        most common bugs in every beginner's first month, including mine.
       </div>
 
       <h2>Putting it together: a tiny calculator</h2>
       <p>
         Here's everything from this lesson combined into a program that
-        actually does something:
+        actually does something useful:
       </p>
       <div class="codeblock">
 <span class="label">python</span>num1 = float(input("Enter first number: "))
@@ -129,11 +142,73 @@ print(f"Difference: {num1 - num2}")
 print(f"Product: {num1 * num2}")
 print(f"Quotient: {num1 / num2}")
       </div>
+      <p>
+        That's a genuinely working calculator in eight lines — take a
+        second to actually run it before moving on.
+      </p>
+
+      <div class="practice-section">
+        <h2>🧩 Practice</h2>
+
+        <div class="exercise-box">
+          <span class="exercise-title">Exercise 1 — Easy</span>
+          <p>Write a program that asks the user for their name and their favorite number, then prints: "Nice to meet you, [name]! [number] is a great number." Watch out for the type of the number you get back from <code>input()</code>.</p>
+          <button class="reveal-btn" type="button">Show solution</button>
+          <div class="reveal-content">
+            <div class="codeblock">
+<span class="label">python</span>name = input("What's your name? ")
+number = input("What's your favorite number? ")
+
+print(f"Nice to meet you, {name}! {number} is a great number.")
+            </div>
+            <p style="margin-top:10px;">Note: you don't actually need to convert <code>number</code> to an <code>int</code> here — you're only printing it inside an f-string, not doing math with it, so a string works perfectly fine.</p>
+          </div>
+        </div>
+
+        <div class="exercise-box">
+          <span class="exercise-title">Exercise 2 — Predict the output</span>
+          <p>Without running it, work out what each line prints:</p>
+          <div class="codeblock">
+<span class="label">python</span>print(17 // 5)
+print(17 % 5)
+print(2 ** 4)
+print(10 == 10.0)
+          </div>
+          <button class="reveal-btn" type="button">Show solution</button>
+          <div class="reveal-content">
+            <p>
+              <code>3</code> (17 divided by 5 is 3 whole times),
+              <code>2</code> (2 left over),
+              <code>16</code>,
+              <code>True</code> — Python treats <code>10</code> and
+              <code>10.0</code> as equal in value even though one's an int
+              and the other's a float.
+            </p>
+          </div>
+        </div>
+
+        <div class="exercise-box">
+          <span class="exercise-title">Exercise 3 — Build it</span>
+          <p>Write a program that takes a whole number of minutes as input, and prints how many full hours and leftover minutes that equals. Example: 130 minutes should print "2 hours and 10 minutes."</p>
+          <button class="reveal-btn" type="button">Show solution</button>
+          <div class="reveal-content">
+            <div class="codeblock">
+<span class="label">python</span>total_minutes = int(input("Enter total minutes: "))
+
+hours = total_minutes // 60
+leftover_minutes = total_minutes % 60
+
+print(f"{hours} hours and {leftover_minutes} minutes")
+            </div>
+          </div>
+        </div>
+      </div>
 
       <p>
-        That's genuinely a working calculator in eight lines. In Lesson 4,
-        we'll use those comparison operators to make programs that
-        actually make decisions instead of just running top to bottom.
+        Now our programs can react to real input and do actual math with
+        it. In Lesson 4, we'll use those comparison operators from earlier
+        to make programs that respond differently depending on what
+        happens — real decision-making, not just running top to bottom.
       </p>
 
       <div class="lesson-nav">

@@ -32,9 +32,11 @@
 
       <p>
         Every program you've written so far runs top to bottom, no matter
-        what. Conditionals are what let a program actually make a
-        decision — run one block of code if something is true, and a
-        different block if it isn't.
+        what — every line executes, every single time. Real decisions
+        aren't like that. "If it's raining, take an umbrella, otherwise
+        don't" only runs one of those two actions, depending on the
+        actual weather. Conditionals are how you write that kind of logic
+        in Python.
       </p>
 
       <h2>if, elif, else</h2>
@@ -49,57 +51,71 @@ else:
     print("You're a kid.")
       </div>
       <p>
-        Python checks each condition in order, top to bottom. The moment
-        one is <code>True</code>, it runs that block and skips the rest —
-        so if <code>age</code> is 20, it never even looks at the
-        <code>elif</code> or <code>else</code>.
+        Python checks each condition in order, top to bottom, and the
+        instant one is <code>True</code>, it runs that block and
+        <strong>completely skips the rest</strong> — so if
+        <code>age</code> is 20, it never even looks at the
+        <code>elif</code> or <code>else</code> lines. Think of it like a
+        row of doors: Python opens the first one that says "yes," walks
+        through, and doesn't check any door after that.
+      </p>
+
+      <h2>Why indentation matters here</h2>
+      <p>
+        Notice that <code>print("You can vote.")</code> is indented —
+        pushed in with spaces — under the <code>if</code> line. That
+        indentation is not just for looks. It's how Python knows that line
+        <strong>belongs to</strong> the <code>if</code> block, instead of
+        being a separate instruction that runs regardless. Some languages
+        use curly braces <code>{ }</code> for this; Python uses
+        indentation itself as the structure.
       </p>
 
       <div class="trick-box">
         <strong>💡 Trick that will catch you at least once:</strong>
-        Python uses <strong>indentation</strong> (the spaces before a
-        line) to know what belongs inside the <code>if</code> block —
-        there are no curly braces like in some other languages. Mixing
-        tabs and spaces, or forgetting to indent, causes an
-        <code>IndentationError</code>. Most editors handle this
-        automatically once you press Tab, but it's worth knowing why the
-        error exists the first time you see it.
+        mixing tabs and spaces, or forgetting to indent a line that should
+        be inside the block, causes an <code>IndentationError</code>.
+        Most code editors handle this automatically once you press Tab —
+        but it's worth knowing <em>why</em> that error exists the first
+        time you see it, instead of assuming your code is broken in some
+        mysterious way.
       </div>
 
       <h2>Combining conditions</h2>
       <p>
         Sometimes one comparison isn't enough — you need two or more
-        conditions to be true (or just one out of several) at the same
-        time.
+        conditions to be true (or just one out of several) before the
+        program should act.
       </p>
 
       <ol class="layer-list">
         <li>
           <span class="num">1</span>
           <h2>and — both must be true</h2>
-          <p>The whole condition is only <code>True</code> if every part of it is true.</p>
-          <div class="example"><code>age &gt;= 13 and age &lt;= 19</code> &rarr; checks if someone is a teenager</div>
+          <p>The whole condition is only <code>True</code> if every single part of it is true. If even one side is <code>False</code>, the whole thing is <code>False</code>.</p>
+          <div class="example"><code>age &gt;= 13 and age &lt;= 19</code> &rarr; checks if someone is a teenager — both boundaries must hold</div>
         </li>
 
         <li>
           <span class="num">2</span>
           <h2>or — at least one must be true</h2>
-          <p>Only needs one side to be true for the whole thing to pass.</p>
+          <p>Only needs one side to be true for the whole thing to pass — it doesn't care if the other side is false.</p>
           <div class="example"><code>day == "Saturday" or day == "Sunday"</code> &rarr; checks for a weekend</div>
         </li>
 
         <li>
           <span class="num">3</span>
           <h2>not — flips it</h2>
-          <p>Turns <code>True</code> into <code>False</code> and vice versa.</p>
-          <div class="example"><code>not is_raining</code> &rarr; <code>True</code> whenever <code>is_raining</code> is <code>False</code></div>
+          <p>Takes whatever a condition would normally return and reverses it — <code>True</code> becomes <code>False</code> and vice versa.</p>
+          <div class="example"><code>not is_raining</code> &rarr; <code>True</code> exactly when <code>is_raining</code> is <code>False</code></div>
         </li>
       </ol>
 
       <h2>Nesting conditionals</h2>
       <p>
-        You can put an <code>if</code> inside another <code>if</code> when
-        one decision only matters after another one's already been made.
+        You can put an <code>if</code> inside another <code>if</code>,
+        when one decision only makes sense to check <em>after</em> another
+        one has already been decided.
       </p>
       <div class="codeblock">
 <span class="label">python</span>marks = int(input("Enter your marks: "))
@@ -113,8 +129,10 @@ else:
       </div>
       <p>
         The distinction check only happens <em>inside</em> the "passed"
-        branch — it never even runs if the person failed, because there's
-        no reason to check.
+        branch — notice it's indented one level further than
+        <code>print("You passed.")</code>. It never even runs if the
+        person failed, because checking for a distinction on a failing
+        score wouldn't make sense.
       </p>
 
       <h2>Putting it together: a grade calculator</h2>
@@ -139,10 +157,93 @@ print(f"Your grade is: {grade}")
 
       <div class="trick-box">
         <strong>💡 Trick:</strong> notice the order — checking from
-        highest to lowest. If you checked <code>marks >= 40</code> first,
-        every single score above 40 would stop right there and always
-        show "D", since Python stops at the first <code>True</code> it
-        finds. Order matters more than it looks like it should.
+        highest to lowest. If you checked <code>marks >= 40</code> first
+        instead, every single score above 40 would stop right there and
+        always show "D," since Python stops at the first
+        <code>True</code> it finds and never looks further. The order you
+        write conditions in genuinely changes the result, not just the
+        style of the code.
+      </div>
+
+      <div class="practice-section">
+        <h2>🧩 Practice</h2>
+
+        <div class="exercise-box">
+          <span class="exercise-title">Exercise 1 — Easy</span>
+          <p>Write a program that asks for someone's age and prints "Child" if under 13, "Teenager" if 13–19, and "Adult" if 20 or older.</p>
+          <button class="reveal-btn" type="button">Show solution</button>
+          <div class="reveal-content">
+            <div class="codeblock">
+<span class="label">python</span>age = int(input("Enter your age: "))
+
+if age < 13:
+    print("Child")
+elif age <= 19:
+    print("Teenager")
+else:
+    print("Adult")
+            </div>
+          </div>
+        </div>
+
+        <div class="exercise-box">
+          <span class="exercise-title">Exercise 2 — Predict the output</span>
+          <p>Without running it, work out what this prints:</p>
+          <div class="codeblock">
+<span class="label">python</span>temperature = 15
+is_raining = True
+
+if temperature > 20 and not is_raining:
+    print("Great day for a walk")
+elif temperature > 20 or is_raining:
+    print("Bring a jacket or umbrella")
+else:
+    print("Stay inside")
+          </div>
+          <button class="reveal-btn" type="button">Show solution</button>
+          <div class="reveal-content">
+            <p>
+              <code>"Bring a jacket or umbrella"</code> — the first
+              condition fails because <code>temperature &gt; 20</code> is
+              false (15 isn't above 20), so Python moves to the
+              <code>elif</code>. There, <code>is_raining</code> is
+              <code>True</code>, and since it's an <code>or</code>, only
+              one side needs to be true for the whole thing to pass.
+            </p>
+          </div>
+        </div>
+
+        <div class="exercise-box">
+          <span class="exercise-title">Exercise 3 — Find the bug</span>
+          <p>This code always prints "Pass," even for very low marks. Figure out why, then fix it.</p>
+          <div class="codeblock">
+<span class="label">python</span>marks = int(input("Enter marks: "))
+
+if marks >= 0:
+    print("Pass")
+elif marks >= 40:
+    print("Also technically pass")
+else:
+    print("Fail")
+          </div>
+          <button class="reveal-btn" type="button">Show solution</button>
+          <div class="reveal-content">
+            <p>
+              <code>marks &gt;= 0</code> is true for almost any mark
+              someone could realistically enter, so it always wins first —
+              the same "wrong order" trap from the grade calculator above.
+              The actual passing check needed to come first:
+            </p>
+            <div class="codeblock">
+<span class="label">python</span>marks = int(input("Enter marks: "))
+
+if marks >= 40:
+    print("Pass")
+else:
+    print("Fail")
+            </div>
+          </div>
+        </div>
       </div>
 
       <p>
@@ -154,7 +255,7 @@ print(f"Your grade is: {grade}")
       <div class="lesson-nav">
         <a href="03-input-output-operators.html">&larr; Previous lesson</a>
         <a href="index.html">Course home</a>
-        <span class="disabled">Next lesson &rarr;</span>
+        <a href="05-loops.html">Next lesson &rarr;</a>
       </div>
 
       <!-- Comments load in here via script.js -->

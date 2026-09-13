@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 5: Loops — Hafiz's Desk</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+  <div class="progress-bar" id="progress-bar"></div>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a href="../index.html" class="brand">Hafiz's Desk<span class="dot">.</span></a>
+      <nav class="site-nav">
+        <ul>
+          <li><a href="../index.html">Blog</a></li>
+          <li><a href="index.html" class="active">Python Course</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <button id="theme-toggle" type="button" aria-label="Toggle dark mode">🌙</button>
+    </div>
+  </header>
+
+  <main>
+    <article class="post wrap">
+      <span class="eyebrow">python from scratch · lesson 5 of 16 · basic</span>
+      <h1>Loops — making Python repeat itself</h1>
+
+      <p>
+        Say you wanted to print "Hello" five times. You already know
+        enough to do this:
+      </p>
+      <div class="codeblock">
+<span class="label">python</span>print("Hello")
+print("Hello")
+print("Hello")
+print("Hello")
+print("Hello")
+      </div>
+      <p>
+        That works, but it's clumsy — and completely falls apart the
+        moment you need to print it 1,000 times, or a number that isn't
+        known until the program is actually running. A <strong>loop</strong>
+        is how you tell Python "repeat this block of code," without
+        writing it out over and over yourself.
+      </p>
+
+      <h2>The for loop</h2>
+      <p>
+        A <code>for</code> loop repeats a block of code once for every
+        item in a sequence. The most common sequence to loop over is a
+        range of numbers, using the built-in <code>range()</code> function.
+      </p>
+      <div class="codeblock">
+<span class="label">python</span>for i in range(5):
+    print("Hello")
+      </div>
+      <p>
+        This prints "Hello" exactly 5 times. <code>i</code> is just a
+        variable name — you'll see <code>i</code> used constantly by
+        convention (short for "index"), but you could call it anything.
+        Each time through the loop, <code>i</code> takes the next value
+        Python gives it, and the indented block runs once for that value.
+      </p>
+
+      <div class="trick-box">
+        <strong>💡 The trap almost everyone falls into first:</strong>
+        <code>range(5)</code> gives you <code>0, 1, 2, 3, 4</code> —
+        <strong>five numbers, starting at 0, and stopping before 5.</strong>
+        It does <em>not</em> include 5 itself. This trips up nearly every
+        beginner at least once. Try it and see for yourself:
+        <div class="codeblock" style="margin-top:10px; margin-bottom:0;">
+<span class="label">python</span>for i in range(5):
+    print(i)
+<span style="color:#7fbf8f;"># Output: 0 1 2 3 4 — never 5</span>
+        </div>
+      </div>
+
+      <h2>range() with a start and a step</h2>
+      <p>
+        <code>range()</code> can take up to three numbers:
+        <code>range(start, stop, step)</code>.
+      </p>
+      <ol class="layer-list">
+        <li>
+          <span class="num">1</span>
+          <h2>One number: range(stop)</h2>
+          <p>Starts at 0, goes up to (but not including) <code>stop</code>.</p>
+          <div class="example"><code>range(5)</code> &rarr; 0, 1, 2, 3, 4</div>
+        </li>
+        <li>
+          <span class="num">2</span>
+          <h2>Two numbers: range(start, stop)</h2>
+          <p>Starts wherever you say, still stops before <code>stop</code>.</p>
+          <div class="example"><code>range(2, 6)</code> &rarr; 2, 3, 4, 5</div>
+        </li>
+        <li>
+          <span class="num">3</span>
+          <h2>Three numbers: range(start, stop, step)</h2>
+          <p>The third number controls how much it jumps by each time — including going backwards with a negative step.</p>
+          <div class="example"><code>range(0, 10, 2)</code> &rarr; 0, 2, 4, 6, 8 &nbsp;·&nbsp; <code>range(5, 0, -1)</code> &rarr; 5, 4, 3, 2, 1</div>
+        </li>
+      </ol>
+
+      <h2>Looping directly over a string</h2>
+      <p>
+        You're not limited to looping over numbers — you can loop over
+        the individual characters in a string too, without needing
+        <code>range()</code> at all:
+      </p>
+      <div class="codeblock">
+<span class="label">python</span>for letter in "Python":
+    print(letter)
+<span style="color:#7fbf8f;"># Output: P, y, t, h, o, n — one per line</span>
+      </div>
+
+      <h2>The while loop</h2>
+      <p>
+        A <code>for</code> loop is great when you know how many times you
+        want to repeat something. A <code>while</code> loop repeats as
+        long as a condition stays <code>True</code> — useful when you
+        don't know the exact number of repeats in advance, like "keep
+        asking until they type the right password."
+      </p>
+      <div class="codeblock">
+<span class="label">python</span>count = 0
+
+while count < 5:
+    print("Hello")
+    count += 1
+      </div>
+      <p>
+        <code>count += 1</code> is shorthand for
+        <code>count = count + 1</code> — it just adds 1 to whatever
+        <code>count</code> already is. This line is doing the real work
+        here: without it, <code>count</code> would stay 0 forever, and
+        the condition <code>count &lt; 5</code> would never become false.
+      </p>
+
+      <div class="trick-box">
+        <strong>⚠️ The single most common while-loop mistake:</strong>
+        forgetting to update the thing your condition checks, creating an
+        <strong>infinite loop</strong> that never stops on its own. If your
+        program looks completely frozen after running a
+        <code>while</code> loop, this is almost always why. Press
+        <code>Ctrl + C</code> in the terminal to force it to stop, then go
+        check that whatever's in your condition is actually changing
+        inside the loop.
+      </div>
+
+      <h2>break — exit a loop early</h2>
+      <p>
+        <code>break</code> immediately stops the loop, even if its
+        condition would still technically allow it to continue. Common
+        use: searching for something and stopping the moment you find it.
+      </p>
+      <div class="codeblock">
+<span class="label">python</span>while True:
+    password = input("Enter the password: ")
+    if password == "python123":
+        print("Access granted.")
+        break
+    print("Wrong password, try again.")
+      </div>
+      <p>
+        <code>while True:</code> creates a loop that would normally run
+        forever, since <code>True</code> is never going to become false
+        on its own — this is intentional here, and <code>break</code> is
+        what actually gives it an exit door once the right condition
+        happens.
+      </p>
+
+      <h2>continue — skip just this one round</h2>
+      <p>
+        <code>continue</code> skips the rest of the current pass through
+        the loop and jumps straight to the next one, instead of stopping
+        the loop entirely.
+      </p>
+      <div class="codeblock">
+<span class="label">python</span>for i in range(1, 11):
+    if i % 2 == 0:
+        continue
+    print(i)
+<span style="color:#7fbf8f;"># Prints only the odd numbers 1–9</span>
+      </div>
+      <p>
+        Every time <code>i</code> is even, <code>continue</code> skips
+        the <code>print(i)</code> line for that round and moves straight
+        to the next value of <code>i</code> — the loop itself keeps
+        running, just that one round gets cut short.
+      </p>
+
+      <h2>Nested loops</h2>
+      <p>
+        A loop can contain another loop inside it. The inner loop runs
+        completely, start to finish, for every single pass of the outer
+        loop.
+      </p>
+      <div class="codeblock">
+<span class="label">python</span>for i in range(1, 4):
+    for j in range(1, 4):
+        print(f"{i} x {j} = {i * j}")
+      </div>
+      <p>
+        For every value of <code>i</code> (1, 2, then 3), the inner loop
+        runs all the way through <code>j</code> (1, 2, 3) before moving to
+        the next <code>i</code> — that's 3 &times; 3 = 9 total lines
+        printed, not 3 + 3.
+      </p>
+
+      <h2>The accumulator pattern</h2>
+      <p>
+        One of the most useful loop patterns in all of programming: using
+        a loop to build up a running total, one step at a time.
+      </p>
+      <div class="codeblock">
+<span class="label">python</span>total = 0
+
+for number in range(1, 101):
+    total += number
+
+print(f"Sum of 1 to 100: {total}")
+      </div>
+      <p>
+        <code>total</code> starts at 0, and on every pass through the
+        loop, whatever number we're currently on gets added to it. By the
+        time the loop finishes, <code>total</code> holds the sum of every
+        number it saw along the way. This exact pattern — start at zero,
+        add something each round — comes up constantly, in problems that
+        don't look anything like "add up some numbers" on the surface.
+      </p>
+
+      <div class="practice-section">
+        <h2>🧩 Practice</h2>
+
+        <div class="exercise-box">
+          <span class="exercise-title">Exercise 1 — Easy</span>
+          <p>Print the numbers 1 to 10 (inclusive) using a <code>for</code> loop and <code>range()</code>. Remember what you learned about <code>range()</code> not including its stop value.</p>
+          <button class="reveal-btn" type="button">Show solution</button>
+          <div class="reveal-content">
+            <div class="codeblock">
+<span class="label">python</span>for i in range(1, 11):
+    print(i)
+            </div>
+          </div>
+        </div>
+
+        <div class="exercise-box">
+          <span class="exercise-title">Exercise 2 — Combine with Lesson 3</span>
+          <p>Print only the even numbers from 1 to 20. You'll need the modulus operator from Lesson 3.</p>
+          <button class="reveal-btn" type="button">Show solution</button>
+          <div class="reveal-content">
+            <div class="codeblock">
+<span class="label">python</span>for i in range(1, 21):
+    if i % 2 == 0:
+        print(i)
+            </div>
+          </div>
+        </div>
+
+        <div class="exercise-box">
+          <span class="exercise-title">Exercise 3 — Build a multiplication table</span>
+          <p>Ask the user for a number, then print its multiplication table from 1 to 10 (e.g., for 7: "7 x 1 = 7", "7 x 2 = 14", and so on).</p>
+          <button class="reveal-btn" type="button">Show solution</button>
+          <div class="reveal-content">
+            <div class="codeblock">
+<span class="label">python</span>number = int(input("Enter a number: "))
+
+for i in range(1, 11):
+    print(f"{number} x {i} = {number * i}")
+            </div>
+          </div>
+        </div>
+
+        <div class="exercise-box">
+          <span class="exercise-title">Exercise 4 — while loop with break</span>
+          <p>Write a program that keeps asking "Guess the secret number (between 1 and 5):" until the person guesses <code>3</code> correctly, then prints "Correct!" and stops.</p>
+          <button class="reveal-btn" type="button">Show solution</button>
+          <div class="reveal-content">
+            <div class="codeblock">
+<span class="label">python</span>while True:
+    guess = int(input("Guess the secret number (between 1 and 5): "))
+    if guess == 3:
+        print("Correct!")
+        break
+    print("Wrong, try again.")
+            </div>
+          </div>
+        </div>
+
+        <div class="exercise-box">
+          <span class="exercise-title">Exercise 5 — Challenge: nested loops</span>
+          <p>Print a triangle of stars, 5 rows tall, where each row has one more star than the last:</p>
+          <div class="example">
+            *<br>
+            **<br>
+            ***<br>
+            ****<br>
+            *****
+          </div>
+          <button class="reveal-btn" type="button">Show solution</button>
+          <div class="reveal-content">
+            <div class="codeblock">
+<span class="label">python</span>for i in range(1, 6):
+    print("*" * i)
+            </div>
+            <p style="margin-top:10px;">
+              Sneaky shortcut: <code>"*" * i</code> repeats the string
+              <code>"*"</code> a total of <code>i</code> times — Python
+              lets you multiply a string by a number. No inner loop
+              needed for this particular version, though writing it with
+              a proper nested loop (printing one star at a time) works
+              too and is a great thing to try on your own.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <p>
+        You can now make a program repeat things, stop early, skip
+        specific rounds, and build up results over many passes. In Lesson
+        6, we'll cover lists, tuples, and dictionaries — ways to store
+        many values at once, which is where loops really start to show
+        their full power.
+      </p>
+
+      <div class="lesson-nav">
+        <a href="04-conditionals.html">&larr; Previous lesson</a>
+        <a href="index.html">Course home</a>
+        <span class="disabled">Next lesson &rarr;</span>
+      </div>
+
+      <!-- Comments load in here via script.js -->
+      <div id="giscus-container" style="margin-top: 20px;"></div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>&copy; 2026 Hafiz Faisal. Built with HTML, CSS &amp; JS — no AI, just me.</span>
+      <span><a href="../about.html">About this blog</a></span>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>
