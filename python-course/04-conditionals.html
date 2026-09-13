@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 4: Conditionals — Hafiz's Desk</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+  <div class="progress-bar" id="progress-bar"></div>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a href="../index.html" class="brand">Hafiz's Desk<span class="dot">.</span></a>
+      <nav class="site-nav">
+        <ul>
+          <li><a href="../index.html">Blog</a></li>
+          <li><a href="index.html" class="active">Python Course</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <button id="theme-toggle" type="button" aria-label="Toggle dark mode">🌙</button>
+    </div>
+  </header>
+
+  <main>
+    <article class="post wrap">
+      <span class="eyebrow">python from scratch · lesson 4 of 16 · basic</span>
+      <h1>Conditionals — teaching your program to decide</h1>
+
+      <p>
+        Every program you've written so far runs top to bottom, no matter
+        what. Conditionals are what let a program actually make a
+        decision — run one block of code if something is true, and a
+        different block if it isn't.
+      </p>
+
+      <h2>if, elif, else</h2>
+      <div class="codeblock">
+<span class="label">python</span>age = int(input("How old are you? "))
+
+if age >= 18:
+    print("You can vote.")
+elif age >= 13:
+    print("You're a teenager.")
+else:
+    print("You're a kid.")
+      </div>
+      <p>
+        Python checks each condition in order, top to bottom. The moment
+        one is <code>True</code>, it runs that block and skips the rest —
+        so if <code>age</code> is 20, it never even looks at the
+        <code>elif</code> or <code>else</code>.
+      </p>
+
+      <div class="trick-box">
+        <strong>💡 Trick that will catch you at least once:</strong>
+        Python uses <strong>indentation</strong> (the spaces before a
+        line) to know what belongs inside the <code>if</code> block —
+        there are no curly braces like in some other languages. Mixing
+        tabs and spaces, or forgetting to indent, causes an
+        <code>IndentationError</code>. Most editors handle this
+        automatically once you press Tab, but it's worth knowing why the
+        error exists the first time you see it.
+      </div>
+
+      <h2>Combining conditions</h2>
+      <p>
+        Sometimes one comparison isn't enough — you need two or more
+        conditions to be true (or just one out of several) at the same
+        time.
+      </p>
+
+      <ol class="layer-list">
+        <li>
+          <span class="num">1</span>
+          <h2>and — both must be true</h2>
+          <p>The whole condition is only <code>True</code> if every part of it is true.</p>
+          <div class="example"><code>age &gt;= 13 and age &lt;= 19</code> &rarr; checks if someone is a teenager</div>
+        </li>
+
+        <li>
+          <span class="num">2</span>
+          <h2>or — at least one must be true</h2>
+          <p>Only needs one side to be true for the whole thing to pass.</p>
+          <div class="example"><code>day == "Saturday" or day == "Sunday"</code> &rarr; checks for a weekend</div>
+        </li>
+
+        <li>
+          <span class="num">3</span>
+          <h2>not — flips it</h2>
+          <p>Turns <code>True</code> into <code>False</code> and vice versa.</p>
+          <div class="example"><code>not is_raining</code> &rarr; <code>True</code> whenever <code>is_raining</code> is <code>False</code></div>
+        </li>
+      </ol>
+
+      <h2>Nesting conditionals</h2>
+      <p>
+        You can put an <code>if</code> inside another <code>if</code> when
+        one decision only matters after another one's already been made.
+      </p>
+      <div class="codeblock">
+<span class="label">python</span>marks = int(input("Enter your marks: "))
+
+if marks >= 40:
+    print("You passed.")
+    if marks >= 90:
+        print("And with distinction!")
+else:
+    print("You didn't pass this time.")
+      </div>
+      <p>
+        The distinction check only happens <em>inside</em> the "passed"
+        branch — it never even runs if the person failed, because there's
+        no reason to check.
+      </p>
+
+      <h2>Putting it together: a grade calculator</h2>
+      <div class="codeblock">
+<span class="label">python</span>marks = int(input("Enter your marks out of 100: "))
+
+if marks >= 90:
+    grade = "A+"
+elif marks >= 80:
+    grade = "A"
+elif marks >= 70:
+    grade = "B"
+elif marks >= 60:
+    grade = "C"
+elif marks >= 40:
+    grade = "D"
+else:
+    grade = "F"
+
+print(f"Your grade is: {grade}")
+      </div>
+
+      <div class="trick-box">
+        <strong>💡 Trick:</strong> notice the order — checking from
+        highest to lowest. If you checked <code>marks >= 40</code> first,
+        every single score above 40 would stop right there and always
+        show "D", since Python stops at the first <code>True</code> it
+        finds. Order matters more than it looks like it should.
+      </div>
+
+      <p>
+        Now our programs can actually respond differently depending on
+        what happens. In Lesson 5, we'll cover loops — how to make Python
+        repeat something without copy-pasting the same code over and over.
+      </p>
+
+      <div class="lesson-nav">
+        <a href="03-input-output-operators.html">&larr; Previous lesson</a>
+        <a href="index.html">Course home</a>
+        <span class="disabled">Next lesson &rarr;</span>
+      </div>
+
+      <!-- Comments load in here via script.js -->
+      <div id="giscus-container" style="margin-top: 20px;"></div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>&copy; 2026 Hafiz Faisal. Built with HTML, CSS &amp; JS — no AI, just me.</span>
+      <span><a href="../about.html">About this blog</a></span>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>
